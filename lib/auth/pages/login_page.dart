@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
         throw AuthException('Email ou senha incorretos');
       }
       navigator.pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     } on AuthException catch (e) {
       setState(() => loading = false);
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       }
       navigator.pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     } on AuthException catch (e) {
       setState(() => loading = false);
