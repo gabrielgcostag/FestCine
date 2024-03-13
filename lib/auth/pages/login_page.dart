@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key, required this.startsAtLogin}) : super(key: key);
+  const LoginPage({Key? key, required this.startsAtLogin}) : super(key: key);
 
   final bool startsAtLogin;
 
@@ -20,6 +20,8 @@ class _LoginPageState extends State<LoginPage> {
   final email = TextEditingController();
   final senha = TextEditingController();
   final confirmarSenha = TextEditingController();
+  bool passwordObscureText = true;
+  bool confirmPasswordObscureText = true;
 
   late bool isLogin;
   late String titulo;
@@ -44,20 +46,26 @@ class _LoginPageState extends State<LoginPage> {
 
   login() async {
     setState(() => loading = true);
+    final navigator = Navigator.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     try {
       await context.read<AuthService>().login(email.text, senha.text);
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomePage()),
+      if (FirebaseAuth.instance.currentUser?.uid == null) {
+        throw AuthException('Email ou senha incorretos');
+      }
+      navigator.pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } on AuthException catch (e) {
       setState(() => loading = false);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message)));
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text(e.message)));
     }
   }
 
   registrar() async {
     setState(() => loading = true);
+    final navigator = Navigator.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     try {
       await context.read<AuthService>().registrar(email.text, senha.text);
       await FirebaseFirestore.instance
@@ -68,23 +76,25 @@ class _LoginPageState extends State<LoginPage> {
         'nome': nome.text,
         'isAdm': false,
       });
-
       // Pegando dados do user
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser?.uid)
-          .get()
-          .then((DocumentSnapshot doc) =>
-              print((doc.data()! as Map<String, dynamic>)['nome']));
+      // await FirebaseFirestore.instance
+      //     .collection('users')
+      //     .doc(FirebaseAuth.instance.currentUser?.uid)
+      //     .get()
+      //     .then((DocumentSnapshot doc) =>
+      //         print((doc.data()! as Map<String, dynamic>)['nome']));
       // Fim :)
-
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomePage()),
+      if (FirebaseAuth.instance.currentUser?.uid == null) {
+        throw AuthException(
+          'Ocorreu um erro no seu registro, verifique as informações fornecidas',
+        );
+      }
+      navigator.pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } on AuthException catch (e) {
       setState(() => loading = false);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message)));
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text(e.message)));
     }
   }
 
@@ -93,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.only(top: 100),
           child: Form(
             key: formKey,
             child: Column(
@@ -101,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Text(
                   isLogin ? 'Bem vindo' : 'Crie sua conta',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
                     letterSpacing: -1.5,
@@ -109,11 +119,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 if (!isLogin)
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12.0, horizontal: 24.0),
                     child: TextFormField(
                       controller: nome,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Nome',
                       ),
@@ -127,11 +137,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 24.0),
                   child: TextFormField(
                     controller: email,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
                     ),
@@ -145,13 +155,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 24.0),
                   child: TextFormField(
                     controller: senha,
-                    obscureText: true,
+                    obscureText: passwordObscureText,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        onPressed: () => setState(() {
+                          passwordObscureText = !passwordObscureText;
+                        }),
+                        icon: Icon(
+                          passwordObscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                      ),
                       labelText: 'Senha',
                     ),
                     validator: (value) {
@@ -166,12 +186,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 if (!isLogin)
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12.0, horizontal: 24.0),
                     child: TextFormField(
                       controller: confirmarSenha,
+                      obscureText: confirmPasswordObscureText,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
+                        suffixIcon: IconButton(
+                          onPressed: () => setState(() {
+                            confirmPasswordObscureText =
+                                !confirmPasswordObscureText;
+                          }),
+                          icon: Icon(
+                            confirmPasswordObscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        ),
                         labelText: 'Confirme sua Senha',
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -184,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 Padding(
-                  padding: EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: ElevatedButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
@@ -199,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: (loading)
                           ? [
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.all(16),
                                 child: SizedBox(
                                   width: 24,
@@ -211,12 +243,12 @@ class _LoginPageState extends State<LoginPage> {
                               )
                             ]
                           : [
-                              Icon(Icons.check),
+                              const Icon(Icons.check),
                               Padding(
-                                padding: EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.all(16.0),
                                 child: Text(
                                   isLogin ? 'Login' : 'Cadastrar',
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               ),
                             ],
@@ -225,9 +257,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () => setFormAction(!isLogin),
-                  child: Text(isLogin
-                      ? 'Ainda não tem conta? Cadastre-se agora.'
-                      : 'Voltar ao Login.'),
+                  child: Text(
+                    isLogin
+                        ? 'Ainda não tem conta? Cadastre-se agora.'
+                        : 'Voltar ao Login.',
+                  ),
                 ),
               ],
             ),
