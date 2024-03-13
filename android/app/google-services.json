@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1069842051069",
+    "project_id": "festcine-pedra-azul-a267e",
+    "storage_bucket": "festcine-pedra-azul-a267e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069842051069:android:c67fb3718d7e7b825c7394",
+        "android_client_info": {
+          "package_name": "com.example.pedraazul_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_qED_llYmhCkBUzPkEQAxJhPY6Qm_0t0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
