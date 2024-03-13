@@ -1,3 +1,4 @@
+import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
 import 'package:festcine_pedraazul/indicados/pages/indicated_page.dart';
 import 'package:festcine_pedraazul/programacao/pages/schedule_page.dart';
@@ -5,7 +6,7 @@ import 'package:festcine_pedraazul/salas_de_exibicao/pages/exhibition_room.dart'
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -32,24 +33,35 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: PageView(
         controller: pc,
-        children: [SchedulePage(), IndicatedPage(), GalleryPage()],
         onPageChanged: setPaginaAtual,
+        children: const [
+          SchedulePage(),
+          IndicatedPage(),
+          GalleryPage(),
+          Scaffold(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: false,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: secondaryColor,
         currentIndex: paginaAtual,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Todas'),
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Favoritas'),
-          BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Galeria')
+          BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Galeria'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Favoritas'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Configuração',
+          ),
         ],
         onTap: (pagina) {
           pc.animateToPage(
             pagina,
-            duration: Duration(milliseconds: 400),
+            duration: const Duration(milliseconds: 400),
             curve: Curves.ease,
           );
         },
-        // backgroundColor: Colors.grey[100],
       ),
     );
   }

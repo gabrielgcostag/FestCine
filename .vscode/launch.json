@@ -5,24 +5,33 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Flutter (lib/main.dart)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart"
+        },
+        {
             "name": "a11y_assessments",
             "cwd": "flutter\\dev\\a11y_assessments",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "lib/main.dart"
         },
         {
             "name": "a11y_assessments (profile mode)",
             "cwd": "flutter\\dev\\a11y_assessments",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "program": "lib/main.dart"
         },
         {
             "name": "a11y_assessments (release mode)",
             "cwd": "flutter\\dev\\a11y_assessments",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "program": "lib/main.dart"
         },
         {
             "name": "automated_tests",
