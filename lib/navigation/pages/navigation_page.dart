@@ -1,5 +1,6 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
+import 'package:festcine_pedraazul/home/home_page.dart';
 import 'package:festcine_pedraazul/indicados/pages/indicated_page.dart';
 import 'package:festcine_pedraazul/programacao/pages/schedule_page.dart';
 import 'package:flutter/material.dart';
@@ -151,7 +152,7 @@ class _NavigationPageState extends State<NavigationPage> {
           paginaAtual = index;
         }),
         children: const [
-          SchedulePage(),
+          HomePage(),
           GalleryPage(),
           IndicatedPage(),
           Scaffold(),
