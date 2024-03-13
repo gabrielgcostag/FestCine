@@ -1,3 +1,4 @@
+import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -18,6 +19,20 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+        leading: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(32.0),
+          ),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
+      ),
+      extendBodyBehindAppBar: true,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -50,7 +65,7 @@ class DetailsPage extends StatelessWidget {
                       Text(
                         title,
                         style: const TextStyle(
-                          color: Colors.lightBlueAccent,
+                          color: primaryColor,
                           fontSize: 22,
                           fontWeight: FontWeight.w600,
                         ),
@@ -61,59 +76,17 @@ class DetailsPage extends StatelessWidget {
                           fontSize: 10,
                         ),
                       ),
-                      Text(
-                        price,
-                        style: const TextStyle(
-                          color: Colors.lightBlueAccent,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
                       const SizedBox(
-                        height: 10,
+                        height: 32,
                       ),
                       Text(
                         details,
                         style: const TextStyle(
-                          fontSize: 14,
-                        ),
+                            fontSize: 16, fontFamily: "Montserrat-Bold.ttf"),
                       ),
                     ],
                   ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: FilledButton.tonal(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          'Back',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      child: FilledButton.tonal(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          'Back',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
           ),
