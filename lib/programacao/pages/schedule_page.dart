@@ -1,7 +1,7 @@
 import 'package:festcine_pedraazul/auth/pages/welcome_page.dart';
 import 'package:festcine_pedraazul/auth/services/auth_service.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-import 'package:festcine_pedraazul/home/pages/home_page.dart';
+import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

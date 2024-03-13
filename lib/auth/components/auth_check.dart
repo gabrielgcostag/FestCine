@@ -1,6 +1,6 @@
 import 'package:festcine_pedraazul/auth/pages/welcome_page.dart';
 import 'package:festcine_pedraazul/auth/services/auth_service.dart';
-import 'package:festcine_pedraazul/home/pages/home_page.dart';
+import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +22,7 @@ class _AuthCheckState extends State<AuthCheck> {
     if (auth.usuario == null)
       return WelcomePage();
     else
-      return HomePage();
+      return NavigationPage();
   }
 
   loading() {

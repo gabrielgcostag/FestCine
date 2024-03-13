@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festcine_pedraazul/auth/services/auth_service.dart';
-import 'package:festcine_pedraazul/home/pages/home_page.dart';
+import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
         throw AuthException('Email ou senha incorretos');
       }
       navigator.pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const NavigationPage()),
       );
     } on AuthException catch (e) {
       setState(() => loading = false);
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       }
       navigator.pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const NavigationPage()),
       );
     } on AuthException catch (e) {
       setState(() => loading = false);

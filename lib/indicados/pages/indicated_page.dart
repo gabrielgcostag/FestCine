@@ -1,5 +1,5 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-import 'package:festcine_pedraazul/home/pages/home_page.dart';
+import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
 import 'package:flutter/material.dart';
 
 class IndicatedPage extends StatefulWidget {
@@ -27,7 +27,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => NavigationPage(),
                   ),
                 );
               },
