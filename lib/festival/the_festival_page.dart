@@ -1,11 +1,5 @@
-import 'package:festcine_pedraazul/auth/services/auth_service.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-import 'package:festcine_pedraazul/home/pages/home_page.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 class TheFestivalPage extends StatefulWidget {
   const TheFestivalPage({super.key});

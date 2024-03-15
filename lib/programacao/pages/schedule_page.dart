@@ -1,4 +1,5 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SchedulePage extends StatefulWidget {
@@ -20,49 +21,64 @@ class _SchedulePageState extends State<SchedulePage> {
           child: Column(
             children: [
               SizedBox(
-                height: 120,
-              ),
-              Center(
-                child: Text(
-                  'Confira a programação',
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      color: tertiaryColor,
-                      fontSize: 25),
-                ),
+                height: 80,
               ),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao1.webp')),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao1.webp'))),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao2.webp')),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao2.webp'))),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao3.webp')),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao3.webp'))),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao4.webp')),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao4.webp'))),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao5.webp')),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao5.webp'))),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao6.webp')),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao6.webp'))),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao7.webp')),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao7.webp'))),
               SizedBox(
                 height: 40,
               ),
-              Image(image: AssetImage('assets/images/programacao8.webp'))
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                  child: Image(
+                      image: AssetImage('assets/images/programacao8.webp'))),
             ],
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:festcine_pedraazul/configurations/configuration_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:festcine_pedraazul/festival/the_festival_page.dart';
 import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
+import 'package:festcine_pedraazul/homenageada/honored_page.dart';
 import 'package:festcine_pedraazul/indicados/pages/indicated_page.dart';
 import 'package:festcine_pedraazul/programacao/pages/schedule_page.dart';
 import 'package:flutter/material.dart';
@@ -41,14 +42,27 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  String nomeDaPagina() {
+    if (paginaAtual == 0) {
+      return "Programação";
+    } else if (paginaAtual == 1) {
+      return "Galeria";
+    } else if (paginaAtual == 2) {
+      return "Indicados";
+    } else
+      return "Configurações";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        forceMaterialTransparency: true,
-        iconTheme: const IconThemeData(color: tertiaryColor),
-      ),
-      extendBodyBehindAppBar: true,
+          backgroundColor: primaryColor,
+          iconTheme: const IconThemeData(color: tertiaryColor),
+          title: Text(
+            nomeDaPagina(),
+            style: TextStyle(color: tertiaryColor),
+          )),
       drawer: Drawer(
         child: SingleChildScrollView(
           child: Column(
@@ -82,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.person),
+                      leading: const Icon(Icons.emoji_events),
                       title: const Text('Indicados'),
                       onTap: () {
                         _onDrawerItemTapped(2);
@@ -111,15 +125,13 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.poll),
-                      title: const Text('Outra Page'),
+                      leading: const Icon(Icons.star),
+                      title: const Text('Homenageados'),
                       onTap: () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => Scaffold(
-                              appBar: AppBar(),
-                            ),
+                            builder: (context) => HonoredPage(),
                           ),
                         );
                       },
@@ -166,7 +178,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month_outlined), label: 'Programação'),
           BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Galeria'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Indicados'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.emoji_events), label: 'Indicados'),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Configuração',
