@@ -116,28 +116,6 @@ class GalleryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Galeria',
-          style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),
-        ),
-        backgroundColor: Colors.transparent,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => NavigationPage(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.arrow_back_ios),
-              color: Colors.white,
-            );
-          },
-        ),
-      ),
       backgroundColor: primaryColor,
       body: SafeArea(
         child: Column(

@@ -15,28 +15,6 @@ class _IndicatedPageState extends State<IndicatedPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: primaryColor,
-      appBar: AppBar(
-        title: const Text(
-          'INDICADOS',
-          style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),
-        ),
-        backgroundColor: Colors.transparent,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => NavigationPage(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.arrow_back_ios),
-              color: Colors.white,
-            );
-          },
-        ),
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -63,7 +41,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         color: primaryColor,
                         child: const Column(
@@ -226,7 +204,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                         ),
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                     ),
                   ],
@@ -241,7 +219,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         color: primaryColor,
                         child: const Column(
@@ -404,7 +382,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                         ),
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                     ),
                   ],
@@ -419,7 +397,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         color: primaryColor,
                         child: const Column(
@@ -582,7 +560,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                         ),
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                     ),
                   ],
@@ -597,7 +575,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         color: primaryColor,
                         child: const Column(
@@ -760,7 +738,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                         ),
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                     ),
                   ],
@@ -775,7 +753,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         color: primaryColor,
                         child: const Column(
@@ -938,7 +916,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                         ),
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                     ),
                   ],
@@ -953,7 +931,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         color: primaryColor,
                         child: const Column(
@@ -1116,7 +1094,7 @@ class _IndicatedPageState extends State<IndicatedPage> {
                         ),
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                     ),
                   ],

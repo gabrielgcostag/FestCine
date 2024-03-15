@@ -15,7 +15,7 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _NavigationPageState extends State<NavigationPage> {
-  int paginaAtual = 0;
+  int paginaAtual = 2;
   late PageController pc;
 
   @override
@@ -83,10 +83,18 @@ class _NavigationPageState extends State<NavigationPage> {
                       },
                     ),
                     ListTile(
+                      leading: const Icon(Icons.home),
+                      title: const Text('Home'),
+                      onTap: () {
+                        _onDrawerItemTapped(2);
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    ListTile(
                       leading: const Icon(Icons.person),
                       title: const Text('Indicados'),
                       onTap: () {
-                        _onDrawerItemTapped(2);
+                        _onDrawerItemTapped(3);
                         Navigator.of(context).pop();
                       },
                     ),
@@ -94,7 +102,7 @@ class _NavigationPageState extends State<NavigationPage> {
                       leading: const Icon(Icons.settings),
                       title: const Text('Configurações'),
                       onTap: () {
-                        _onDrawerItemTapped(3);
+                        _onDrawerItemTapped(4);
                         Navigator.of(context).pop();
                       },
                     ),
@@ -106,7 +114,7 @@ class _NavigationPageState extends State<NavigationPage> {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => TheFestivalPage(),
+                            builder: (context) => const TheFestivalPage(),
                           ),
                         );
                       },
@@ -152,8 +160,9 @@ class _NavigationPageState extends State<NavigationPage> {
           paginaAtual = index;
         }),
         children: const [
-          HomePage(),
+          SchedulePage(),
           GalleryPage(),
+          HomePage(),
           IndicatedPage(),
           ConfigurationPage(),
         ],
@@ -167,6 +176,7 @@ class _NavigationPageState extends State<NavigationPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month_outlined), label: 'Programação'),
           BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Galeria'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Indicados'),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
