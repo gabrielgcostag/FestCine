@@ -5,9 +5,7 @@ import 'package:festcine_pedraazul/configurations/pages/change_password.dart';
 import 'package:festcine_pedraazul/configurations/pages/manage_page.dart';
 import 'package:festcine_pedraazul/configurations/pages/privacy_security_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class ConfigurationPage extends StatefulWidget {
@@ -23,48 +21,46 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Configurações",
-          style: TextStyle(fontSize: 22),
-        ),
-      ),
+      backgroundColor: primaryColor,
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
-            SizedBox(height: 40),
-            Row(
+            const SizedBox(height: 40),
+            const Row(
               children: [
-                Icon(Icons.person, color: primaryColor),
+                Icon(Icons.person, color: tertiaryColor),
                 SizedBox(width: 10),
                 Text(
                   "Conta",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: tertiaryColor),
                 )
               ],
             ),
-            Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
+            const Divider(height: 20, thickness: 1),
+            const SizedBox(height: 10),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: primaryColor),
               ),
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ChangePassword()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChangePassword()));
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Alterar senha",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey[600])),
+                          color: Colors.grey)),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.grey,
@@ -77,20 +73,20 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: primaryColor),
               ),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PrivacySecurityPage()));
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Privacidade e segurança",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey[600])),
+                          color: Colors.grey)),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.grey,
@@ -103,20 +99,20 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: primaryColor),
               ),
               onPressed: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => ManagePage()));
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Gerenciar",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey[600])),
+                          color: Colors.grey)),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.grey,
@@ -124,54 +120,31 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 ],
               ),
             ),
-            SizedBox(height: 40),
-            Row(
+            const SizedBox(height: 40),
+            const Row(
               children: [
                 Icon(
                   Icons.smartphone_outlined,
-                  color: primaryColor,
+                  color: tertiaryColor,
                 ),
                 SizedBox(width: 10),
                 Text(
                   "Aplicativo",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: tertiaryColor),
                 )
               ],
             ),
-            Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
-            // OutlinedButton(
-            //   style: OutlinedButton.styleFrom(
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(0),
-            //     ),
-            //     side: BorderSide(color: Colors.white),
-            //   ),
-            //   onPressed: () {},
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Text("Tema Escuro",
-            //           style: TextStyle(
-            //               fontSize: 20,
-            //               fontWeight: FontWeight.w500,
-            //               color: Colors.grey[600])),
-            //       CupertinoSwitch(
-            //         value: isSwitched,
-            //         onChanged: (value) => setState(() {
-            //           isSwitched = value;
-            //         }),
-            //         activeColor: primaryColor,
-            //       )
-            //     ],
-            //   ),
-            // ),
+            const Divider(height: 20, thickness: 1),
+            const SizedBox(height: 10),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: primaryColor),
               ),
               onPressed: () {
                 showLicensePage(
@@ -181,14 +154,14 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                         'assets/images/Logo_FestCine_Pedra_Azul-removebg-preview.png'),
                     applicationVersion: "1.0");
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Licenças",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey[600])),
+                          color: Colors.grey)),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.grey,
@@ -201,20 +174,20 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: primaryColor),
               ),
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => AboutPage()));
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Sobre o app",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey[600])),
+                          color: Colors.grey)),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.grey,
@@ -222,23 +195,25 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 ],
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Center(
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
+                  side: const BorderSide(
+                      color: Color.fromARGB(255, 230, 114, 152)),
                   padding: const EdgeInsets.symmetric(horizontal: 40),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                 ),
                 onPressed: () {
                   context.read<AuthService>().logout();
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => WelcomePage()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const WelcomePage()));
                 },
-                child: Text(
+                child: const Text(
                   "SAIR",
                   style: TextStyle(
-                      fontSize: 16, letterSpacing: 2.2, color: Colors.black),
+                      fontSize: 16, letterSpacing: 2.2, color: tertiaryColor),
                 ),
               ),
             )

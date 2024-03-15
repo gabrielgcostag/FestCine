@@ -124,15 +124,6 @@ class GalleryPage extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const Text(
-              'GALERIA',
-              style: TextStyle(
-                fontFamily: 'Montserrat-Light',
-                fontSize: 28,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-            ),
             const SizedBox(
               height: 40,
             ),

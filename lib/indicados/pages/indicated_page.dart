@@ -21,18 +21,6 @@ class _IndicatedPageState extends State<IndicatedPage> {
           child: Column(
             children: [
               const SizedBox(
-                height: 120,
-              ),
-              const Center(
-                child: Text(
-                  'Indicados à premiação',
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      color: tertiaryColor,
-                      fontSize: 25),
-                ),
-              ),
-              const SizedBox(
                 height: 80,
               ),
               Card(
