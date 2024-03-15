@@ -1,6 +1,5 @@
 import 'package:festcine_pedraazul/auth/services/auth_service.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-import 'package:festcine_pedraazul/home/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -31,7 +30,8 @@ class _TheFestivalPageState extends State<TheFestivalPage> {
           width: currentWidth,
           height: currentHeight,
           color: primaryColor,
-          child: Image(image: AssetImage("assets/images/sobre_canva.png")),
+          child:
+              const Image(image: AssetImage("assets/images/sobre_canva.png")),
         ),
         AnimatedPositioned(
           width: selected ? currentWidth : currentWidth,
