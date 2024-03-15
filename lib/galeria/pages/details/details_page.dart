@@ -5,17 +5,16 @@ class DetailsPage extends StatelessWidget {
   final String imagePath;
   final String title;
   final String photographer;
-  final String price;
   final String details;
   final int index;
-  const DetailsPage(
-      {super.key,
-      required this.imagePath,
-      required this.title,
-      required this.photographer,
-      required this.price,
-      required this.details,
-      required this.index});
+  const DetailsPage({
+    super.key,
+    required this.imagePath,
+    required this.title,
+    required this.photographer,
+    required this.details,
+    required this.index,
+  });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +43,7 @@ class DetailsPage extends StatelessWidget {
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30)),
                   image: DecorationImage(
-                    image: AssetImage(imagePath),
+                    image: NetworkImage(imagePath),
                     fit: BoxFit.cover,
                   ),
                 ),
