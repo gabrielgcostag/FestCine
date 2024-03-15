@@ -144,7 +144,7 @@ class GalleryPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             const SizedBox(
-              height: 40,
+              height: 8,
             ),
             const Text(
               'GALERIA',

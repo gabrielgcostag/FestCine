@@ -1,4 +1,6 @@
+import 'package:festcine_pedraazul/configurations/configuration_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
+import 'package:festcine_pedraazul/festival/the_festival_page.dart';
 import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
 import 'package:festcine_pedraazul/home/home_page.dart';
 import 'package:festcine_pedraazul/indicados/pages/indicated_page.dart';
@@ -65,8 +67,8 @@ class _NavigationPageState extends State<NavigationPage> {
                 child: Column(
                   children: [
                     ListTile(
-                      leading: const Icon(Icons.list),
-                      title: const Text('Todas'),
+                      leading: const Icon(Icons.calendar_month_outlined),
+                      title: const Text('Programação'),
                       onTap: () {
                         _onDrawerItemTapped(0);
                         Navigator.of(context).pop();
@@ -98,15 +100,13 @@ class _NavigationPageState extends State<NavigationPage> {
                     ),
                     const Divider(indent: 8, endIndent: 8),
                     ListTile(
-                      leading: const Icon(Icons.poll),
-                      title: const Text('Outra Page'),
+                      leading: const Icon(Icons.movie),
+                      title: const Text('O Festival'),
                       onTap: () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => Scaffold(
-                              appBar: AppBar(),
-                            ),
+                            builder: (context) => TheFestivalPage(),
                           ),
                         );
                       },
@@ -155,7 +155,7 @@ class _NavigationPageState extends State<NavigationPage> {
           HomePage(),
           GalleryPage(),
           IndicatedPage(),
-          Scaffold(),
+          ConfigurationPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -164,7 +164,8 @@ class _NavigationPageState extends State<NavigationPage> {
         unselectedItemColor: secondaryColor,
         currentIndex: paginaAtual,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Todas'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined), label: 'Programação'),
           BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Galeria'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Indicados'),
           BottomNavigationBarItem(
