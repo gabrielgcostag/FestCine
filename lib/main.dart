@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fest Cine',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: AuthCheck(),
+      home: const AuthCheck(),
     );
   }
 }

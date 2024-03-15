@@ -77,7 +77,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
               ),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PrivacySecurityPage()));
+                    builder: (context) => const PrivacySecurityPage()));
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +103,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
               ),
               onPressed: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ManagePage()));
+                    MaterialPageRoute(builder: (context) => const ManagePage()));
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,7 +178,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
               ),
               onPressed: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => AboutPage()));
+                    .push(MaterialPageRoute(builder: (context) => const AboutPage()));
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

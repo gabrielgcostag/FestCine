@@ -1,5 +1,4 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
 import 'package:flutter/material.dart';
 
 class IndicatedPage extends StatefulWidget {

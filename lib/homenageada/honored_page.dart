@@ -1,7 +1,5 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HonoredPage extends StatefulWidget {
   const HonoredPage({super.key});
@@ -47,7 +45,7 @@ class _HonoredPageState extends State<HonoredPage> {
                         )),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         height: standardHeight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,7 +117,7 @@ class _HonoredPageState extends State<HonoredPage> {
                         )),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         height: standardHeight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -192,7 +190,7 @@ class _HonoredPageState extends State<HonoredPage> {
                         )),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         height: standardHeight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -264,7 +262,7 @@ class _HonoredPageState extends State<HonoredPage> {
                         )),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         height: standardHeight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -337,7 +335,7 @@ class _HonoredPageState extends State<HonoredPage> {
                         )),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         height: standardHeight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,

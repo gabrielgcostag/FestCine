@@ -7,11 +7,11 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sobre o app"),
+        title: const Text("Sobre o app"),
       ),
-      body: Container(
+      body: const SizedBox(
         width: double.infinity,
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AuthCheck extends StatefulWidget {
-  AuthCheck({Key? key}) : super(key: key);
+  const AuthCheck({Key? key}) : super(key: key);
 
   @override
-  _AuthCheckState createState() => _AuthCheckState();
+  createState() => _AuthCheckState();
 }
 
 class _AuthCheckState extends State<AuthCheck> {
@@ -19,14 +19,15 @@ class _AuthCheckState extends State<AuthCheck> {
     // if (auth.isLoading)
     //   return loading();
     // else
-    if (auth.usuario == null)
-      return WelcomePage();
-    else
-      return NavigationPage();
+    if (auth.usuario == null) {
+      return const WelcomePage();
+    } else {
+      return const NavigationPage();
+    }
   }
 
   loading() {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),

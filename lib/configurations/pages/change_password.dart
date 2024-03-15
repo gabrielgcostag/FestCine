@@ -1,5 +1,4 @@
 import 'package:festcine_pedraazul/auth/pages/login_page.dart';
-import 'package:festcine_pedraazul/configurations/configuration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -23,16 +22,17 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   final currentUser = FirebaseAuth.instance.currentUser;
   changePassword() async {
+    final navigator = Navigator.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     try {
       await currentUser?.updatePassword(newPassword);
       FirebaseAuth.instance.signOut();
-      Navigator.pushReplacement(
-        context,
+      navigator.pushReplacement(
         MaterialPageRoute(
-          builder: (context) => LoginPage(startsAtLogin: true),
+          builder: (context) => const LoginPage(startsAtLogin: true),
         ),
       );
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      scaffoldMessenger.showSnackBar(const SnackBar(
         backgroundColor: Colors.black26,
         content:
             Text('Sua senha foi alterada com sucesso! Faça o login novamente.'),
@@ -51,23 +51,24 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         body: SingleChildScrollView(
             child: Padding(
-                padding: EdgeInsets.only(top: 100),
+                padding: const EdgeInsets.only(top: 100),
                 child: Form(
                   key: _formKey,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 24.0),
                           child: TextFormField(
                             controller: newPasswordController,
                             validator: (value) {
                               if (value == null ||
                                   value.isEmpty ||
-                                  value.length < 6) ;
+                                  value.length < 6) {}
+                              return null;
                             },
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Senha Nova',
                             ),
@@ -87,7 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               changePassword();
                             }
                           },
-                          child: Text(
+                          child: const Text(
                             "Alterar Senha",
                             style: TextStyle(
                                 fontSize: 16,

@@ -1,6 +1,5 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:flutter/material.dart';
-import '../../navigation/pages/navigation_page.dart';
 import 'details/details_page.dart';
 
 List<ImageDetails> _images = [

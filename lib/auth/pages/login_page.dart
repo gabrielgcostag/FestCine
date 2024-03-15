@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
   final bool startsAtLogin;
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {

@@ -1,7 +1,6 @@
 import 'package:festcine_pedraazul/auth/pages/welcome_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ManagePage extends StatelessWidget {
@@ -12,9 +11,9 @@ class ManagePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text("Gerenciar conta")),
         body: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: ListView(children: [
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             const Row(
               children: [
                 Icon(Icons.person, color: primaryColor),
@@ -25,14 +24,14 @@ class ManagePage extends StatelessWidget {
                 )
               ],
             ),
-            Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
+            const Divider(height: 20, thickness: 1),
+            const SizedBox(height: 10),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: Colors.white),
               ),
               onPressed: () => showDialog(
                 context: context,
@@ -48,11 +47,13 @@ class ManagePage extends StatelessWidget {
                         child: const Text('Não')),
                     ElevatedButton(
                         onPressed: () async {
+                          final navigator = Navigator.of(context);
+
                           await FirebaseAuth.instance.currentUser?.delete();
-                          Navigator.of(context)
+                          navigator
                             ..pop()
                             ..pushReplacement(MaterialPageRoute(
-                              builder: (context) => WelcomePage(),
+                              builder: (context) => const WelcomePage(),
                             ));
                         },
                         child: const Text('Sim')),

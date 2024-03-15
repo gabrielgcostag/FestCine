@@ -7,11 +7,11 @@ class PrivacySecurityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Privacidade e segurança"),
+        title: const Text("Privacidade e segurança"),
       ),
-      body: Container(
+      body: const SizedBox(
         width: double.infinity,
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

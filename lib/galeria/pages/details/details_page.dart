@@ -27,7 +27,7 @@ class DetailsPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(32.0),
           ),
           child: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),

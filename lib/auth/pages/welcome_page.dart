@@ -54,7 +54,7 @@ class WelcomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                        builder: (context) => LoginPage(
+                        builder: (context) => const LoginPage(
                               startsAtLogin: true,
                             )),
                   );
@@ -86,7 +86,7 @@ class WelcomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                        builder: (context) => LoginPage(
+                        builder: (context) => const LoginPage(
                               startsAtLogin: false,
                             )),
                   );

@@ -1,9 +1,4 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
-<<<<<<< HEAD
-import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
-=======
-import 'package:flutter/cupertino.dart';
->>>>>>> honored_page
 import 'package:flutter/material.dart';
 
 class SchedulePage extends StatefulWidget {
