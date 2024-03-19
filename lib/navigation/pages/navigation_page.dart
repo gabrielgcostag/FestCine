@@ -181,16 +181,28 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
-        selectedItemColor: primaryColor,
+        selectedItemColor: tertiaryColor,
         unselectedItemColor: secondaryColor,
         currentIndex: paginaAtual,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined), label: 'Programação'),
-          BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Galeria'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Indicados'),
+              backgroundColor: primaryColor,
+              icon: Icon(Icons.calendar_month_outlined),
+              label: 'Programação'),
           BottomNavigationBarItem(
+              backgroundColor: primaryColor,
+              icon: Icon(Icons.photo),
+              label: 'Galeria'),
+          BottomNavigationBarItem(
+              backgroundColor: primaryColor,
+              icon: Icon(Icons.home),
+              label: 'Home'),
+          BottomNavigationBarItem(
+              backgroundColor: primaryColor,
+              icon: Icon(Icons.person),
+              label: 'Indicados'),
+          BottomNavigationBarItem(
+            backgroundColor: primaryColor,
             icon: Icon(Icons.settings),
             label: 'Configuração',
           ),
