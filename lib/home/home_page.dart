@@ -53,11 +53,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Future.wait([
-      _loadUserName(),
-      _loadGalleryImages(),
-    ]).then((value) => setState(() {
-          _isLoading = false;
-        }));
+      _loadUserName().onError((error, stackTrace) => null),
+      _loadGalleryImages().onError((error, stackTrace) => null),
+    ]).then((value) {
+      if (!mounted) return;
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
 
   @override
