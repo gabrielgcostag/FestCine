@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
-        .then((DocumentSnapshot doc) =>
-            _userName = (doc.data() as Map<String, dynamic>?)?['nome'] ?? '');
+        .then((DocumentSnapshot doc) => _userName =
+            (doc.data() as Map<String, dynamic>?)?['nome'].split(' ')[0] ?? '');
   }
 
   Future<void> _loadGalleryImages() async {

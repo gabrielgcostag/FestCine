@@ -76,14 +76,6 @@ class _LoginPageState extends State<LoginPage> {
         'nome': nome.text,
         'isAdm': false,
       });
-      // Pegando dados do user
-      // await FirebaseFirestore.instance
-      //     .collection('users')
-      //     .doc(FirebaseAuth.instance.currentUser?.uid)
-      //     .get()
-      //     .then((DocumentSnapshot doc) =>
-      //         print((doc.data()! as Map<String, dynamic>)['nome']));
-      // Fim :)
       if (FirebaseAuth.instance.currentUser?.uid == null) {
         throw AuthException(
           'Ocorreu um erro no seu registro, verifique as informações fornecidas',
