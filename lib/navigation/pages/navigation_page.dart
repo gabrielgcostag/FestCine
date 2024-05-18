@@ -43,27 +43,13 @@ class _NavigationPageState extends State<NavigationPage> {
     });
   }
 
-  String nomeDaPagina() {
-    if (paginaAtual == 0) {
-      return "Programação";
-    } else if (paginaAtual == 1) {
-      return "Galeria";
-    } else if (paginaAtual == 2) {
-      return "Indicados";
-    }
-    return "Configurações";
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: primaryColor,
-          iconTheme: const IconThemeData(color: tertiaryColor),
-          title: Text(
-            nomeDaPagina(),
-            style: const TextStyle(color: tertiaryColor),
-          )),
+        backgroundColor: primaryColor,
+        iconTheme: const IconThemeData(color: tertiaryColor),
+      ),
       drawer: Drawer(
         child: SingleChildScrollView(
           child: Column(

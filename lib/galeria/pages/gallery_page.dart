@@ -115,53 +115,67 @@ class _GalleryPageState extends State<GalleryPage> {
   bool userIsAdm = false;
 
   Future<void> _getUserIsAdm() async {
-    await firebaseFirestore
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .get()
-        .then((DocumentSnapshot doc) => setState(() {
-              userIsAdm =
-                  (doc.data() as Map<String, dynamic>?)?['isAdm'] ?? false;
-            }));
+    try {
+      await firebaseFirestore
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .get()
+          .then((DocumentSnapshot doc) {
+        if (mounted) {
+          setState(() {
+            userIsAdm =
+                (doc.data() as Map<String, dynamic>?)?['isAdm'] ?? false;
+          });
+        }
+      });
+    } catch (error) {
+      print("Erro ao obter informações do usuário: $error");
+    }
   }
 
   Future<void> _loadGalleryImages() async {
-    await firebaseFirestore
-        .collection('gallery_images')
-        .orderBy('uploaded_at', descending: true)
-        .get()
-        .then((QuerySnapshot query) async {
-      final List<String> imageNames = [];
-      final List<Map<String, dynamic>?> documents = [];
-      documents.addAll(query.docs.map(
-          (QueryDocumentSnapshot doc) => doc.data() as Map<String, dynamic>?));
-      imageNames.addAll(
-        documents.map((Map<String, dynamic>? document) =>
-            document?['image'] ?? 'galeria1.jpg'),
-      );
-      for (int index = 0; index < imageNames.length; index++) {
-        _images.add(
-          ImageDetails(
-            imageUrl: await firebaseStorageReference
-                .child(imageNames[index])
-                .getDownloadURL(),
-            photographer: documents[index]?['photographer'] ?? '',
-            title: documents[index]?['title'] ?? '',
-            details: documents[index]?['details'] ?? '',
-          ),
+    try {
+      await firebaseFirestore
+          .collection('gallery_images')
+          .orderBy('uploaded_at', descending: true)
+          .get()
+          .then((QuerySnapshot query) async {
+        final List<String> imageNames = [];
+        final List<Map<String, dynamic>?> documents = [];
+        documents.addAll(query.docs.map((QueryDocumentSnapshot doc) =>
+            doc.data() as Map<String, dynamic>?));
+        imageNames.addAll(
+          documents.map((Map<String, dynamic>? document) =>
+              document?['image'] ?? 'galeria1.jpg'),
         );
+        for (int index = 0; index < imageNames.length; index++) {
+          _images.add(
+            ImageDetails(
+              imageUrl: await firebaseStorageReference
+                  .child(imageNames[index])
+                  .getDownloadURL(),
+              photographer: documents[index]?['photographer'] ?? '',
+              title: documents[index]?['title'] ?? '',
+              details: documents[index]?['details'] ?? '',
+            ),
+          );
+        }
+      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
       }
-    });
-    setState(() {
-      _isLoading = false;
-    });
+    } catch (error) {
+      print("Erro ao obter informações do usuário: $error");
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _getUserIsAdm();
-    _loadGalleryImages();
+    _getUserIsAdm().onError((error, stackTrace) => null);
+    _loadGalleryImages().onError((error, stackTrace) => null);
   }
 
   @override

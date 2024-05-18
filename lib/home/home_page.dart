@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
-        .then((DocumentSnapshot doc) =>
-            _userName = (doc.data() as Map<String, dynamic>?)?['nome'] ?? '');
+        .then((DocumentSnapshot doc) => _userName =
+            (doc.data() as Map<String, dynamic>?)?['nome'].split(' ')[0] ?? '');
   }
 
   Future<void> _loadGalleryImages() async {
@@ -53,11 +53,15 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Future.wait([
-      _loadUserName(),
-      _loadGalleryImages(),
-    ]).then((value) => setState(() {
+      _loadUserName().onError((error, stackTrace) => null),
+      _loadGalleryImages().onError((error, stackTrace) => null),
+    ]).then((value) {
+      if (mounted) {
+        setState(() {
           _isLoading = false;
-        }));
+        });
+      }
+    });
   }
 
   @override
