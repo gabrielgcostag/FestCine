@@ -56,11 +56,10 @@ class _HomePageState extends State<HomePage> {
       _loadUserName().onError((error, stackTrace) => null),
       _loadGalleryImages().onError((error, stackTrace) => null),
     ]).then((value) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
+      if (!mounted) return;
+      setState(() {
+        _isLoading = false;
+      });
     });
   }
 
