@@ -20,64 +20,13 @@ class _SchedulePageState extends State<SchedulePage> {
           child: Column(
             children: [
               SizedBox(
-                height: 80,
-              ),
-              SizedBox(
-                height: 40,
+                height: 24,
               ),
               ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                   child: Image(
-                      image: AssetImage('assets/images/programacao1.webp'))),
-              SizedBox(
-                height: 40,
-              ),
-              ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: Image(
-                      image: AssetImage('assets/images/programacao2.webp'))),
-              SizedBox(
-                height: 40,
-              ),
-              ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: Image(
-                      image: AssetImage('assets/images/programacao3.webp'))),
-              SizedBox(
-                height: 40,
-              ),
-              ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: Image(
-                      image: AssetImage('assets/images/programacao4.webp'))),
-              SizedBox(
-                height: 40,
-              ),
-              ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: Image(
-                      image: AssetImage('assets/images/programacao5.webp'))),
-              SizedBox(
-                height: 40,
-              ),
-              ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: Image(
-                      image: AssetImage('assets/images/programacao6.webp'))),
-              SizedBox(
-                height: 40,
-              ),
-              ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: Image(
-                      image: AssetImage('assets/images/programacao7.webp'))),
-              SizedBox(
-                height: 40,
-              ),
-              ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  child: Image(
-                      image: AssetImage('assets/images/programacao8.webp'))),
+                      image: AssetImage(
+                          'assets/images/programacao2024-breve1.png'))),
             ],
           ),
         ),

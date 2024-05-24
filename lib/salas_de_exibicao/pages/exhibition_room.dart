@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExhibitionRoom extends StatefulWidget {
   const ExhibitionRoom({super.key});
@@ -13,83 +15,341 @@ class ExhibitionRoom extends StatefulWidget {
 class _ExhibitionRoomState extends State<ExhibitionRoom> {
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
+    const double standardHeight = 300;
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: primaryColor,
+      appBar: AppBar(
+        title: const Text(
+          "Salas de exibição",
+          style: TextStyle(color: tertiaryColor),
+        ),
+        forceMaterialTransparency: true,
+        iconTheme: const IconThemeData(color: tertiaryColor),
+      ),
       body: SingleChildScrollView(
-        child: Expanded(
+        child: Center(
           child: Column(
             children: [
               const SizedBox(
-                height: 60,
+                height: 140,
               ),
-              const Text(
-                'Bem-vindo, Marcoz',
-                style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 25,
-                    color: tertiaryColor),
+              Card.outlined(
+                color: primaryColor,
+                child: SizedBox(
+                  height: 330,
+                  width: 350,
+                  child: Column(children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: const Image(
+                        image: AssetImage('assets/images/cinema.png'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'SALA STÊNIO GARCIA',
+                      style: TextStyle(
+                          color: tertiaryColor,
+                          fontFamily: "Montserrat",
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Define o raio dos cantos
+                            ),
+                          ),
+                          side: MaterialStateProperty.all<BorderSide>(
+                            const BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 207, 144,
+                                    183)), // Define a cor da borda
+                          ),
+                        ),
+                        onPressed: () async {},
+                        child: const Text(
+                          "Programação",
+                          style: TextStyle(color: tertiaryColor),
+                        ))
+                  ]),
+                ),
               ),
               const SizedBox(
                 height: 40,
               ),
-              CarouselSlider(
-                options: CarouselOptions(
-                    height: 200,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    autoPlayInterval: const Duration(seconds: 8),
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration:
-                        const Duration(milliseconds: 800),
-                    viewportFraction: 0.8),
-                items: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.orange),
-                    width: 400,
-                  )
-                ],
+              Card.outlined(
+                color: primaryColor,
+                child: SizedBox(
+                  height: 330,
+                  width: 350,
+                  child: Column(children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: const Image(
+                        image: AssetImage('assets/images/cinema.png'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'SALA TUNA DWEK',
+                      style: TextStyle(
+                          color: tertiaryColor,
+                          fontFamily: "Montserrat",
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Define o raio dos cantos
+                            ),
+                          ),
+                          side: MaterialStateProperty.all<BorderSide>(
+                            const BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 207, 144,
+                                    183)), // Define a cor da borda
+                          ),
+                        ),
+                        onPressed: () async {},
+                        child: const Text(
+                          "Programação",
+                          style: TextStyle(color: tertiaryColor),
+                        ))
+                  ]),
+                ),
               ),
-              //GridView(gridDelegate: ),
+              const SizedBox(
+                height: 40,
+              ),
+              Card.outlined(
+                color: primaryColor,
+                child: SizedBox(
+                  height: 330,
+                  width: 350,
+                  child: Column(children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: const Image(
+                        image: AssetImage('assets/images/cinema.png'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'SALA PAULO BETTI',
+                      style: TextStyle(
+                          color: tertiaryColor,
+                          fontFamily: "Montserrat",
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Define o raio dos cantos
+                            ),
+                          ),
+                          side: MaterialStateProperty.all<BorderSide>(
+                            const BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 207, 144,
+                                    183)), // Define a cor da borda
+                          ),
+                        ),
+                        onPressed: () async {},
+                        child: const Text(
+                          "Programação",
+                          style: TextStyle(color: tertiaryColor),
+                        ))
+                  ]),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Card.outlined(
+                color: primaryColor,
+                child: SizedBox(
+                  height: 330,
+                  width: 350,
+                  child: Column(children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: const Image(
+                        image: AssetImage('assets/images/cinema.png'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'SALA MARCOS CARUSO',
+                      style: TextStyle(
+                          color: tertiaryColor,
+                          fontFamily: "Montserrat",
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Define o raio dos cantos
+                            ),
+                          ),
+                          side: MaterialStateProperty.all<BorderSide>(
+                            const BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 207, 144,
+                                    183)), // Define a cor da borda
+                          ),
+                        ),
+                        onPressed: () async {},
+                        child: const Text(
+                          "Programação",
+                          style: TextStyle(color: tertiaryColor),
+                        ))
+                  ]),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Card.outlined(
+                color: primaryColor,
+                child: SizedBox(
+                  height: 330,
+                  width: 350,
+                  child: Column(children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: const Image(
+                        image: AssetImage('assets/images/cinema.png'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'SALA MALU MADER',
+                      style: TextStyle(
+                          color: tertiaryColor,
+                          fontFamily: "Montserrat",
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Define o raio dos cantos
+                            ),
+                          ),
+                          side: MaterialStateProperty.all<BorderSide>(
+                            const BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 207, 144,
+                                    183)), // Define a cor da borda
+                          ),
+                        ),
+                        onPressed: () async {},
+                        child: const Text(
+                          "Programação",
+                          style: TextStyle(color: tertiaryColor),
+                        ))
+                  ]),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Card.outlined(
+                color: primaryColor,
+                child: SizedBox(
+                  height: 330,
+                  width: 350,
+                  child: Column(children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: const Image(
+                        image: AssetImage('assets/images/cinema.png'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'SALA DANIEL DANTAS',
+                      style: TextStyle(
+                          color: tertiaryColor,
+                          fontFamily: "Montserrat",
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Define o raio dos cantos
+                            ),
+                          ),
+                          side: MaterialStateProperty.all<BorderSide>(
+                            const BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(255, 207, 144,
+                                    183)), // Define a cor da borda
+                          ),
+                        ),
+                        onPressed: () async {},
+                        child: const Text(
+                          "Programação",
+                          style: TextStyle(color: tertiaryColor),
+                        )),
+                  ]),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
             ],
           ),
-        ),
-      ),
-      extendBodyBehindAppBar: true,
-      backgroundColor: primaryColor,
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
-          child: GNav(
-              tabBackgroundColor: Colors.grey.shade800,
-              activeColor: Colors.white,
-              color: Colors.white,
-              gap: 8,
-              padding: const EdgeInsets.all(16),
-              tabs: [
-                GButton(
-                  icon: Icons.home,
-                  text: 'Home',
-                  onPressed: () {},
-                ),
-                GButton(
-                  icon: Icons.movie,
-                  text: 'Salas',
-                  onPressed: () {},
-                ),
-                GButton(
-                  icon: Icons.photo_library,
-                  text: 'Galeria',
-                  onPressed: () {},
-                ),
-                GButton(
-                  icon: Icons.settings,
-                  text: 'Configurações',
-                  onPressed: () {},
-                )
-              ]),
         ),
       ),
     );

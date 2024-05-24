@@ -1,12 +1,16 @@
+import 'package:festcine_pedraazul/award/pages/award_page.dart';
 import 'package:festcine_pedraazul/configurations/configuration_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
+import 'package:festcine_pedraazul/curadoria/pages/curadoria_page.dart';
 import 'package:festcine_pedraazul/festival/the_festival_page.dart';
 import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
 import 'package:festcine_pedraazul/home/home_page.dart';
 import 'package:festcine_pedraazul/homenageada/honored_page.dart';
 import 'package:festcine_pedraazul/indicados/pages/indicated_page.dart';
 import 'package:festcine_pedraazul/programacao/pages/schedule_page.dart';
+import 'package:festcine_pedraazul/salas_de_exibicao/pages/exhibition_room.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({Key? key}) : super(key: key);
@@ -54,12 +58,8 @@ class _NavigationPageState extends State<NavigationPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  'Navegação',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
+              const Padding(
+                padding: EdgeInsets.all(32),
               ),
               const Divider(height: 0, indent: 16, endIndent: 16),
               Padding(
@@ -132,16 +132,44 @@ class _NavigationPageState extends State<NavigationPage> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.poll),
-                      title: const Text('Outra Page'),
+                      leading: const Icon(Icons.videocam),
+                      title: const Text('Inscrição'),
+                      onTap: () async {
+                        var url = Uri.https('filmfreeway.com');
+                        await launchUrl(url);
+                      },
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.weekend),
+                      title: const Text('Salas'),
                       onTap: () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => Scaffold(
-                              appBar: AppBar(),
-                            ),
+                            builder: (context) => const ExhibitionRoom(),
                           ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.how_to_reg),
+                      title: const Text('Curadoria'),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const CuradoriaPage()),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.emoji_events),
+                      title: const Text('Premiação'),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const AwardPage()),
                         );
                       },
                     ),
