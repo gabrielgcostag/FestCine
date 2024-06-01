@@ -10,6 +10,7 @@ import 'package:festcine_pedraazul/indicados/pages/indicated_page.dart';
 import 'package:festcine_pedraazul/programacao/pages/schedule_page.dart';
 import 'package:festcine_pedraazul/salas_de_exibicao/pages/exhibition_room.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -173,6 +174,72 @@ class _NavigationPageState extends State<NavigationPage> {
                         );
                       },
                     ),
+                    const Divider(indent: 8, endIndent: 8),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    const Text(
+                      "Descubra nossas redes",
+                      style: TextStyle(
+                          fontFamily: "Montserrat-bold", fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            var url =
+                                Uri.https('instagram.com', 'festcinepedraazul');
+                            await launchUrl(url);
+                          },
+                          child: const Card(
+                            child: SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: Image(
+                                image:
+                                    AssetImage("assets/images/insta-logo.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            var url =
+                                Uri.https('facebook.com', 'festcinepedraazul');
+                            await launchUrl(url);
+                          },
+                          child: const Card(
+                            child: SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: Image(
+                                image: AssetImage(
+                                    "assets/images/facebook-logo.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            var url = Uri.https('x.com', 'fc_pedra_azul');
+                            await launchUrl(url);
+                          },
+                          child: const Card(
+                            child: SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: Image(
+                                image: AssetImage("assets/images/x-logo.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               )
