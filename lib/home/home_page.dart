@@ -228,11 +228,11 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const ExhibitionRoom(),
-                                ),
-                              ),
+                              onTap: () async {
+                                var url = Uri.https(
+                                    'festcinepedraazul.com.br', 'indicados');
+                                await launchUrl(url);
+                              },
                               child: const Card(
                                 color: primaryColor,
                                 child: SizedBox(
@@ -243,11 +243,11 @@ class _HomePageState extends State<HomePage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(
-                                        Icons.weekend,
+                                        Icons.person,
                                         color: tertiaryColor,
                                       ),
                                       Text(
-                                        'Salas',
+                                        'Indicados',
                                         style: TextStyle(
                                             color: tertiaryColor,
                                             fontFamily: 'Montserrat-Bold.ttf'),
