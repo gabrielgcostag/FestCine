@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festcine_pedraazul/auth/services/auth_service.dart';
+import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
+import 'package:festcine_pedraazul/galeria/services/gallery_service.dart';
 import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       if (FirebaseAuth.instance.currentUser?.uid == null) {
         throw AuthException('Email ou senha incorretos');
       }
+      if (mounted) context.read<GalleryService>().loadImages();
       navigator.pushReplacement(
         MaterialPageRoute(builder: (context) => const NavigationPage()),
       );
