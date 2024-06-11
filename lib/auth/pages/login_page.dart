@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Informa sua senha!';
+                        return 'Informe sua senha!';
                       } else if (value.length < 6) {
                         return 'Sua senha deve ter no mínimo 6 caracteres';
                       }
@@ -196,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                                 : Icons.visibility_off,
                           ),
                         ),
-                        labelText: 'Confirme sua Senha',
+                        labelText: 'Confirme sua senha',
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {

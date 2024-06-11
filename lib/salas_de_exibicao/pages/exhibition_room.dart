@@ -22,10 +22,6 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
       extendBodyBehindAppBar: true,
       backgroundColor: primaryColor,
       appBar: AppBar(
-        title: const Text(
-          "Salas de exibição",
-          style: TextStyle(color: tertiaryColor),
-        ),
         forceMaterialTransparency: true,
         iconTheme: const IconThemeData(color: tertiaryColor),
       ),
@@ -34,7 +30,7 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
           child: Column(
             children: [
               const SizedBox(
-                height: 140,
+                height: 32,
               ),
               Card.outlined(
                 color: primaryColor,
