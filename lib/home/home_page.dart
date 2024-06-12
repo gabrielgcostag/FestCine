@@ -65,6 +65,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final today = DateTime.now();
+    final targetDate = DateTime(today.year, 9, 11);
+    final daysLeft = targetDate.isBefore(today)
+        ? DateTime(today.year + 1, 9, 11).difference(today).inDays
+        : targetDate.difference(today).inDays;
 
     return Scaffold(
       backgroundColor: primaryColor,
@@ -351,19 +356,12 @@ class _HomePageState extends State<HomePage> {
                                               color: secondaryColor,
                                               fontSize: 28),
                                         ),
-                                        CountDownText(
-                                          due: DateTime.utc(2024, 09, 11),
-                                          finishedText: "Done",
-                                          showLabel: true,
-                                          longDateName: false,
-                                          daysTextShort: "",
-                                          collapsing: true,
+                                        Text(
+                                          "$daysLeft",
                                           style: const TextStyle(
-                                              color: tertiaryColor,
                                               fontSize: 92,
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold),
-                                          endingText: "",
+                                              fontFamily: "Montserrat-bold",
+                                              color: tertiaryColor),
                                         ),
                                         const Text(
                                           "DIAS",
