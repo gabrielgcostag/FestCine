@@ -2,17 +2,13 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_count_down/date_count_down.dart';
 import 'package:festcine_pedraazul/award/pages/award_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:festcine_pedraazul/curadoria/pages/curadoria_page.dart';
 import 'package:festcine_pedraazul/festival/the_festival_page.dart';
 import 'package:festcine_pedraazul/homenageada/honored_page.dart';
-import 'package:festcine_pedraazul/salas_de_exibicao/pages/exhibition_room.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
