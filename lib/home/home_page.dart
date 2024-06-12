@@ -2,17 +2,13 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_count_down/date_count_down.dart';
 import 'package:festcine_pedraazul/award/pages/award_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:festcine_pedraazul/curadoria/pages/curadoria_page.dart';
 import 'package:festcine_pedraazul/festival/the_festival_page.dart';
 import 'package:festcine_pedraazul/homenageada/honored_page.dart';
-import 'package:festcine_pedraazul/salas_de_exibicao/pages/exhibition_room.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -65,6 +61,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final today = DateTime.now();
+    final targetDate = DateTime(today.year, 9, 11);
+    final daysLeft = targetDate.isBefore(today)
+        ? DateTime(today.year + 1, 9, 11).difference(today).inDays
+        : targetDate.difference(today).inDays;
 
     return Scaffold(
       backgroundColor: primaryColor,
@@ -351,19 +352,12 @@ class _HomePageState extends State<HomePage> {
                                               color: secondaryColor,
                                               fontSize: 28),
                                         ),
-                                        CountDownText(
-                                          due: DateTime.utc(2024, 09, 11),
-                                          finishedText: "Done",
-                                          showLabel: true,
-                                          longDateName: false,
-                                          daysTextShort: "",
-                                          collapsing: true,
+                                        Text(
+                                          "$daysLeft",
                                           style: const TextStyle(
-                                              color: tertiaryColor,
                                               fontSize: 92,
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold),
-                                          endingText: "",
+                                              fontFamily: "Montserrat-bold",
+                                              color: tertiaryColor),
                                         ),
                                         const Text(
                                           "DIAS",
