@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       if (FirebaseAuth.instance.currentUser?.uid == null) {
         throw AuthException('Email ou senha incorretos');
       }
-      if (mounted) context.read<GalleryService>().loadImages();
+
       navigator.pushReplacement(
         MaterialPageRoute(builder: (context) => const NavigationPage()),
       );

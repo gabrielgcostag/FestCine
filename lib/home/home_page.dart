@@ -31,6 +31,12 @@ class _HomePageState extends State<HomePage> {
   final Reference firebaseStorageReference = FirebaseStorage.instance.ref();
 
   @override
+  void initState() {
+    super.initState();
+    if (mounted) context.read<GalleryService>().loadImages();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final galleryService = context.read<GalleryService>();
