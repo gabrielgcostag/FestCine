@@ -92,8 +92,8 @@ class _NavigationPageState extends State<NavigationPage> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.person),
-                      title: const Text('Indicados'),
+                      leading: const Icon(Icons.weekend),
+                      title: const Text('Salas de exibição'),
                       onTap: () {
                         _onDrawerItemTapped(3);
                         Navigator.of(context).pop();
@@ -141,15 +141,12 @@ class _NavigationPageState extends State<NavigationPage> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.weekend),
-                      title: const Text('Salas'),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const ExhibitionRoom(),
-                          ),
-                        );
+                      leading: const Icon(Icons.person),
+                      title: const Text('Indicados'),
+                      onTap: () async {
+                        var url =
+                            Uri.https('festcinepedraazul.com.br', 'indicados');
+                        await launchUrl(url);
                       },
                     ),
                     ListTile(
@@ -256,7 +253,7 @@ class _NavigationPageState extends State<NavigationPage> {
           SchedulePage(),
           GalleryPage(),
           HomePage(),
-          IndicatedPage(),
+          ExhibitionRoom(),
           ConfigurationPage(),
         ],
       ),
@@ -280,8 +277,8 @@ class _NavigationPageState extends State<NavigationPage> {
               label: 'Home'),
           BottomNavigationBarItem(
               backgroundColor: tertiaryColor,
-              icon: Icon(Icons.person),
-              label: 'Indicados'),
+              icon: Icon(Icons.weekend),
+              label: 'Salas'),
           BottomNavigationBarItem(
             backgroundColor: tertiaryColor,
             icon: Icon(Icons.settings),
