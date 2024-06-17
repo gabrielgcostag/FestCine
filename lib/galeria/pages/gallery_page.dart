@@ -1,104 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:festcine_pedraazul/galeria/pages/add_image_page.dart';
+import 'package:festcine_pedraazul/galeria/services/gallery_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'details/details_page.dart';
-
-List<ImageDetails> _images = [
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria1.jpg',
-    photographer: 'Martin Andres',
-    title: 'New Year',
-    details:
-        'This image was taken during a party in New York on new years eve. Quite a colorful shot.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria2.jpg',
-    photographer: 'Abraham Costa',
-    title: 'Spring',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria3.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'Casual Look',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria4.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria5.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria6.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria7.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria8.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria9.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria10.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria11.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria12.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-  ImageDetails(
-    imageUrl: 'assets/images/galeria/galeria13.jpg',
-    photographer: 'Jamie Bryan',
-    title: 'New York',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
-];
 
 class GalleryPage extends StatefulWidget {
   const GalleryPage({super.key});
@@ -109,9 +18,6 @@ class GalleryPage extends StatefulWidget {
 
 class _GalleryPageState extends State<GalleryPage> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  final Reference firebaseStorageReference = FirebaseStorage.instance.ref();
-  final List<ImageDetails> _images = [];
-  bool _isLoading = true;
   bool userIsAdm = false;
 
   Future<void> _getUserIsAdm() async {
@@ -133,134 +39,133 @@ class _GalleryPageState extends State<GalleryPage> {
     }
   }
 
-  Future<void> _loadGalleryImages() async {
-    try {
-      await firebaseFirestore
-          .collection('gallery_images')
-          .orderBy('uploaded_at', descending: true)
-          .get()
-          .then((QuerySnapshot query) async {
-        final List<String> imageNames = [];
-        final List<Map<String, dynamic>?> documents = [];
-        documents.addAll(query.docs.map((QueryDocumentSnapshot doc) =>
-            doc.data() as Map<String, dynamic>?));
-        imageNames.addAll(
-          documents.map((Map<String, dynamic>? document) =>
-              document?['image'] ?? 'galeria1.jpg'),
-        );
-        for (int index = 0; index < imageNames.length; index++) {
-          _images.add(
-            ImageDetails(
-              imageUrl: await firebaseStorageReference
-                  .child(imageNames[index])
-                  .getDownloadURL(),
-              photographer: documents[index]?['photographer'] ?? '',
-              title: documents[index]?['title'] ?? '',
-              details: documents[index]?['details'] ?? '',
-            ),
-          );
-        }
-      });
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    } catch (error) {
-      print("Erro ao obter informações do usuário: $error");
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     _getUserIsAdm().onError((error, stackTrace) => null);
-    _loadGalleryImages().onError((error, stackTrace) => null);
   }
 
   @override
   Widget build(BuildContext context) {
+    final galleryService = context.read<GalleryService>();
+
     return Scaffold(
-      floatingActionButton: userIsAdm
-          ? FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AddImagePage()),
-              ),
-            )
-          : null,
-      backgroundColor: primaryColor,
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 30,
+        floatingActionButton: userIsAdm
+            ? FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const AddImagePage()),
+                ),
+              )
+            : null,
+        backgroundColor: primaryColor,
+        body: ListenableBuilder(
+          listenable: galleryService,
+          builder: (context, child) => galleryService.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SafeArea(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 8,
                       ),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
+                      const SizedBox(
+                        height: 40,
                       ),
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                        ),
-                        itemBuilder: (context, index) {
-                          return RawMaterialButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DetailsPage(
-                                    imagePath: _images[index].imageUrl,
-                                    title: _images[index].title,
-                                    photographer: _images[index].photographer,
-                                    details: _images[index].details,
-                                    index: index,
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 30,
+                          ),
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                            ),
+                            itemBuilder: (context, index) {
+                              return RawMaterialButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailsPage(
+                                        imagePath: galleryService
+                                            .images[index].imageUrl,
+                                        title:
+                                            galleryService.images[index].title,
+                                        photographer: galleryService
+                                            .images[index].photographer,
+                                        details: galleryService
+                                            .images[index].details,
+                                        index: index,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: 'logo$index',
+                                  child: CachedNetworkImage(
+                                    progressIndicatorBuilder:
+                                        (context, url, progress) => Container(
+                                      decoration: BoxDecoration(
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.black26,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 5),
+                                          ),
+                                        ],
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Shimmer.fromColors(
+                                        baseColor: Colors.grey.shade300,
+                                        highlightColor: Colors.grey.shade100,
+                                        child: Container(
+                                          height: double.infinity,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    imageUrl:
+                                        galleryService.images[index].imageUrl,
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               );
                             },
-                            child: Hero(
-                              tag: 'logo$index',
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                    image:
-                                        NetworkImage(_images[index].imageUrl),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                        itemCount: _images.length,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-    );
+                            itemCount: galleryService.images.length,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+        ));
   }
 }
 

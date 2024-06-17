@@ -1,15 +1,21 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festcine_pedraazul/award/pages/award_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:festcine_pedraazul/curadoria/pages/curadoria_page.dart';
 import 'package:festcine_pedraazul/festival/the_festival_page.dart';
+import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
+import 'package:festcine_pedraazul/galeria/services/gallery_service.dart';
 import 'package:festcine_pedraazul/homenageada/honored_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,46 +27,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final Reference firebaseStorageReference = FirebaseStorage.instance.ref();
-  final List<String> _galleryImages = [];
-  bool _isLoading = true;
-
-  Future<void> _loadGalleryImages() async {
-    await firebaseFirestore
-        .collection('gallery_images')
-        .orderBy('uploaded_at', descending: true)
-        .limit(5)
-        .get()
-        .then((QuerySnapshot query) async {
-      final List<String> imageNames = [];
-      imageNames.addAll(
-        query.docs.map((QueryDocumentSnapshot doc) =>
-            ((doc.data() as Map<String, dynamic>?)?['image'] ?? 'galeria1.jpg')
-                as String),
-      );
-      for (final image in imageNames) {
-        _galleryImages.add(
-          await firebaseStorageReference.child(image).getDownloadURL(),
-        );
-      }
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    Future.wait([
-      _loadGalleryImages().onError((error, stackTrace) => null),
-    ]).then((value) {
-      if (!mounted) return;
-      setState(() {
-        _isLoading = false;
-      });
-    });
+    if (mounted) context.read<GalleryService>().loadImages();
   }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final galleryService = context.read<GalleryService>();
     final today = DateTime.now();
     final targetDate = DateTime(today.year, 9, 11);
     final daysLeft = targetDate.isBefore(today)
@@ -69,65 +46,94 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: primaryColor,
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                      width: 175,
-                      height: 175,
-                      child: Image(
-                          image: AssetImage('assets/images/LogoFCPA.png'))),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 64),
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        height: 200,
-                        enlargeCenterPage: true,
-                        autoPlay: true,
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        autoPlayInterval: const Duration(seconds: 8),
-                        enableInfiniteScroll: true,
-                        autoPlayAnimationDuration:
-                            const Duration(milliseconds: 800),
-                        viewportFraction: 0.8,
-                      ),
-                      items: _galleryImages
-                          .map(
-                            (String imagePath) => Image.network(imagePath,
-                                fit: BoxFit.cover,
-                                frameBuilder: (
-                                  context,
-                                  child,
-                                  frame,
-                                  wasSynchronouslyLoaded,
-                                ) =>
-                                    Container(
-                                      clipBehavior: Clip.hardEdge,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0XFFD3D3D3),
-                                        borderRadius: BorderRadius.circular(24),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [],
+                ),
+              ),
+            ),
+            const SizedBox(
+                width: 175,
+                height: 175,
+                child: Image(image: AssetImage('assets/images/LogoFCPA.png'))),
+            Padding(
+              padding: const EdgeInsets.only(top: 64),
+              child: ListenableBuilder(
+                listenable: galleryService,
+                builder: (context, child) => galleryService.isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : CarouselSlider(
+                        options: CarouselOptions(
+                          height: 200,
+                          enlargeCenterPage: true,
+                          autoPlay: true,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          autoPlayInterval: const Duration(seconds: 8),
+                          enableInfiniteScroll: true,
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 800),
+                          viewportFraction: 0.8,
+                        ),
+                        items: galleryService.images
+                            .take(5)
+                            .map(
+                              (ImageDetails detail) => CachedNetworkImage(
+                                  progressIndicatorBuilder: (context, url,
+                                          progress) =>
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black26,
+                                              blurRadius: 10,
+                                              offset: Offset(0, 5),
+                                            ),
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Shimmer.fromColors(
+                                          baseColor: Colors.grey.shade300,
+                                          highlightColor: Colors.grey.shade100,
+                                          child: Container(
+                                            width: width * .8,
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      width: width * .8,
-                                      height: 100,
-                                      child: child,
-                                    )),
-                          )
-                          .toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 100),
+                                  imageUrl: detail.imageUrl,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                        clipBehavior: Clip.hardEdge,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover),
+                                          color: const Color(0XFFD3D3D3),
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                        ),
+                                        width: width * .8,
+                                        height: 100,
+                                      )),
+                            )
+                            .toList(),
+                      ),
+              ),
+            ),
+            const SizedBox(height: 100),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Column(
