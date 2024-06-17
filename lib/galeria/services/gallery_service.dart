@@ -11,6 +11,7 @@ class GalleryService extends ChangeNotifier {
   final List<ImageDetails> images = [];
 
   Future<void> loadImages() async {
+    if (images.isNotEmpty) return;
     try {
       await firebaseFirestore
           .collection('users')

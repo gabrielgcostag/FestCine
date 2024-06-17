@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -82,19 +83,48 @@ class _HomePageState extends State<HomePage> {
                             .take(5)
                             .map(
                               (ImageDetails detail) => CachedNetworkImage(
+                                  progressIndicatorBuilder: (context, url,
+                                          progress) =>
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black26,
+                                              blurRadius: 10,
+                                              offset: Offset(0, 5),
+                                            ),
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Shimmer.fromColors(
+                                          baseColor: Colors.grey.shade300,
+                                          highlightColor: Colors.grey.shade100,
+                                          child: Container(
+                                            width: width * .8,
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                   imageUrl: detail.imageUrl,
-                                  fit: BoxFit.cover,
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
                                         clipBehavior: Clip.hardEdge,
                                         decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover),
                                           color: const Color(0XFFD3D3D3),
                                           borderRadius:
                                               BorderRadius.circular(24),
                                         ),
                                         width: width * .8,
                                         height: 100,
-                                        child: Image(image: imageProvider),
                                       )),
                             )
                             .toList(),

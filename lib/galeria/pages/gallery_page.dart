@@ -6,6 +6,7 @@ import 'package:festcine_pedraazul/galeria/services/gallery_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'details/details_page.dart';
 
 class GalleryPage extends StatefulWidget {
@@ -115,6 +116,32 @@ class _GalleryPageState extends State<GalleryPage> {
                                 child: Hero(
                                   tag: 'logo$index',
                                   child: CachedNetworkImage(
+                                    progressIndicatorBuilder:
+                                        (context, url, progress) => Container(
+                                      decoration: BoxDecoration(
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.black26,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 5),
+                                          ),
+                                        ],
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Shimmer.fromColors(
+                                        baseColor: Colors.grey.shade300,
+                                        highlightColor: Colors.grey.shade100,
+                                        child: Container(
+                                          height: double.infinity,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                     imageUrl:
                                         galleryService.images[index].imageUrl,
                                     imageBuilder: (context, imageProvider) =>
