@@ -62,40 +62,44 @@ class _HomePageState extends State<HomePage> {
                 child: Image(image: AssetImage('assets/images/LogoFCPA.png'))),
             Padding(
               padding: const EdgeInsets.only(top: 64),
-              child: galleryService.isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : CarouselSlider(
-                      options: CarouselOptions(
-                        height: 200,
-                        enlargeCenterPage: true,
-                        autoPlay: true,
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        autoPlayInterval: const Duration(seconds: 8),
-                        enableInfiniteScroll: true,
-                        autoPlayAnimationDuration:
-                            const Duration(milliseconds: 800),
-                        viewportFraction: 0.8,
+              child: ListenableBuilder(
+                listenable: galleryService,
+                builder: (context, child) => galleryService.isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : CarouselSlider(
+                        options: CarouselOptions(
+                          height: 200,
+                          enlargeCenterPage: true,
+                          autoPlay: true,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          autoPlayInterval: const Duration(seconds: 8),
+                          enableInfiniteScroll: true,
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 800),
+                          viewportFraction: 0.8,
+                        ),
+                        items: galleryService.images
+                            .take(5)
+                            .map(
+                              (ImageDetails detail) => CachedNetworkImage(
+                                  imageUrl: detail.imageUrl,
+                                  fit: BoxFit.cover,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                        clipBehavior: Clip.hardEdge,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0XFFD3D3D3),
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                        ),
+                                        width: width * .8,
+                                        height: 100,
+                                        child: Image(image: imageProvider),
+                                      )),
+                            )
+                            .toList(),
                       ),
-                      items: galleryService.images
-                          .take(5)
-                          .map(
-                            (ImageDetails detail) => CachedNetworkImage(
-                                imageUrl: detail.imageUrl,
-                                fit: BoxFit.cover,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                      clipBehavior: Clip.hardEdge,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0XFFD3D3D3),
-                                        borderRadius: BorderRadius.circular(24),
-                                      ),
-                                      width: width * .8,
-                                      height: 100,
-                                      child: Image(image: imageProvider),
-                                    )),
-                          )
-                          .toList(),
-                    ),
+              ),
             ),
             const SizedBox(height: 100),
             SingleChildScrollView(

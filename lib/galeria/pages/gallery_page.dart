@@ -49,92 +49,96 @@ class _GalleryPageState extends State<GalleryPage> {
     final galleryService = context.read<GalleryService>();
 
     return Scaffold(
-      floatingActionButton: userIsAdm
-          ? FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AddImagePage()),
-              ),
-            )
-          : null,
-      backgroundColor: primaryColor,
-      body: galleryService.isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 30,
+        floatingActionButton: userIsAdm
+            ? FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const AddImagePage()),
+                ),
+              )
+            : null,
+        backgroundColor: primaryColor,
+        body: ListenableBuilder(
+          listenable: galleryService,
+          builder: (context, child) => galleryService.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SafeArea(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 8,
                       ),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
+                      const SizedBox(
+                        height: 40,
                       ),
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                        ),
-                        itemBuilder: (context, index) {
-                          return RawMaterialButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DetailsPage(
-                                    imagePath:
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 30,
+                          ),
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                            ),
+                            itemBuilder: (context, index) {
+                              return RawMaterialButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailsPage(
+                                        imagePath: galleryService
+                                            .images[index].imageUrl,
+                                        title:
+                                            galleryService.images[index].title,
+                                        photographer: galleryService
+                                            .images[index].photographer,
+                                        details: galleryService
+                                            .images[index].details,
+                                        index: index,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: 'logo$index',
+                                  child: CachedNetworkImage(
+                                    imageUrl:
                                         galleryService.images[index].imageUrl,
-                                    title: galleryService.images[index].title,
-                                    photographer: galleryService
-                                        .images[index].photographer,
-                                    details:
-                                        galleryService.images[index].details,
-                                    index: index,
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               );
                             },
-                            child: Hero(
-                              tag: 'logo$index',
-                              child: CachedNetworkImage(
-                                imageUrl: galleryService.images[index].imageUrl,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                        itemCount: galleryService.images.length,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-    );
+                            itemCount: galleryService.images.length,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+        ));
   }
 }
 

@@ -41,9 +41,9 @@ class GalleryService extends ChangeNotifier {
                 details: documents[index]?['details'] ?? '',
               ),
             );
-            isLoading = false;
-            notifyListeners();
           }
+          isLoading = false;
+          notifyListeners();
         });
       });
     } catch (error) {
