@@ -6,7 +6,7 @@ class DetailsPage extends StatelessWidget {
   final String title;
   final String photographer;
   final String details;
-  final int index;
+  final int? index;
   const DetailsPage({
     super.key,
     required this.imagePath,
