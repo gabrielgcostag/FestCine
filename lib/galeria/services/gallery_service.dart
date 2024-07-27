@@ -3,6 +3,7 @@ import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class GalleryService extends ChangeNotifier {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -50,5 +51,36 @@ class GalleryService extends ChangeNotifier {
     } catch (error) {
       print("Erro ao obter informações do usuário: $error");
     }
+  }
+
+  Future<void> uploadImage({
+    required String details,
+    required String photographer,
+    required String title,
+    required XFile file,
+  }) async {
+    final imageName = '${DateTime.now().microsecondsSinceEpoch}.png';
+    final UploadTask task = FirebaseStorage.instance.ref(imageName).putData(
+          await file.readAsBytes(),
+          SettableMetadata(contentType: 'image/jpeg'),
+        );
+    await firebaseFirestore.collection('gallery_images').add({
+      'details': details,
+      'image': imageName,
+      'photographer': photographer,
+      'title': title,
+      'uploaded_at': DateTime.now(),
+      'uploaded_by': FirebaseAuth.instance.currentUser?.uid,
+    });
+    final String url = await (await task).ref.getDownloadURL();
+    images.add(
+      ImageDetails(
+        imageUrl: url,
+        photographer: photographer,
+        title: title,
+        details: details,
+      ),
+    );
+    notifyListeners();
   }
 }
