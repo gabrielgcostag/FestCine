@@ -1,9 +1,6 @@
-import 'dart:convert';
 
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ExhibitionRoom extends StatefulWidget {
   const ExhibitionRoom({super.key});
@@ -60,13 +57,13 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
                     OutlinedButton(
                         style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   8.0), // Define o raio dos cantos
                             ),
                           ),
-                          side: MaterialStateProperty.all<BorderSide>(
+                          side: WidgetStateProperty.all<BorderSide>(
                             const BorderSide(
                                 width: 2,
                                 color: Color.fromARGB(255, 207, 144,
@@ -112,13 +109,13 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
                     OutlinedButton(
                         style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   8.0), // Define o raio dos cantos
                             ),
                           ),
-                          side: MaterialStateProperty.all<BorderSide>(
+                          side: WidgetStateProperty.all<BorderSide>(
                             const BorderSide(
                                 width: 2,
                                 color: Color.fromARGB(255, 207, 144,
@@ -164,13 +161,13 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
                     OutlinedButton(
                         style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   8.0), // Define o raio dos cantos
                             ),
                           ),
-                          side: MaterialStateProperty.all<BorderSide>(
+                          side: WidgetStateProperty.all<BorderSide>(
                             const BorderSide(
                                 width: 2,
                                 color: Color.fromARGB(255, 207, 144,
@@ -216,13 +213,13 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
                     OutlinedButton(
                         style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   8.0), // Define o raio dos cantos
                             ),
                           ),
-                          side: MaterialStateProperty.all<BorderSide>(
+                          side: WidgetStateProperty.all<BorderSide>(
                             const BorderSide(
                                 width: 2,
                                 color: Color.fromARGB(255, 207, 144,
@@ -268,13 +265,13 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
                     OutlinedButton(
                         style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   8.0), // Define o raio dos cantos
                             ),
                           ),
-                          side: MaterialStateProperty.all<BorderSide>(
+                          side: WidgetStateProperty.all<BorderSide>(
                             const BorderSide(
                                 width: 2,
                                 color: Color.fromARGB(255, 207, 144,
@@ -320,13 +317,13 @@ class _ExhibitionRoomState extends State<ExhibitionRoom> {
                     OutlinedButton(
                         style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   8.0), // Define o raio dos cantos
                             ),
                           ),
-                          side: MaterialStateProperty.all<BorderSide>(
+                          side: WidgetStateProperty.all<BorderSide>(
                             const BorderSide(
                                 width: 2,
                                 color: Color.fromARGB(255, 207, 144,

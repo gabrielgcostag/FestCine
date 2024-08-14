@@ -13,7 +13,6 @@ import 'package:festcine_pedraazul/galeria/services/gallery_service.dart';
 import 'package:festcine_pedraazul/homenageada/honored_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shimmer/shimmer.dart';

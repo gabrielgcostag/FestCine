@@ -1,6 +1,5 @@
 import 'package:festcine_pedraazul/galeria/services/gallery_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddImagePage extends StatefulWidget {

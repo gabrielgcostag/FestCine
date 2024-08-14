@@ -6,11 +6,9 @@ import 'package:festcine_pedraazul/festival/the_festival_page.dart';
 import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
 import 'package:festcine_pedraazul/home/home_page.dart';
 import 'package:festcine_pedraazul/homenageada/honored_page.dart';
-import 'package:festcine_pedraazul/indicados/pages/indicated_page.dart';
 import 'package:festcine_pedraazul/programacao/pages/schedule_page.dart';
 import 'package:festcine_pedraazul/salas_de_exibicao/pages/exhibition_room.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavigationPage extends StatefulWidget {

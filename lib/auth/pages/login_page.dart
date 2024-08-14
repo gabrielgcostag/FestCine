@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:festcine_pedraazul/auth/pages/forgot_password_page.dart';
 import 'package:festcine_pedraazul/auth/services/auth_service.dart';
-import 'package:festcine_pedraazul/galeria/pages/gallery_page.dart';
-import 'package:festcine_pedraazul/galeria/services/gallery_service.dart';
 import 'package:festcine_pedraazul/navigation/pages/navigation_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  isLogin ? 'Bem vindo' : 'Crie sua conta',
+                  isLogin ? 'Faça seu login' : 'Crie sua conta',
                   style: const TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
@@ -258,6 +257,17 @@ class _LoginPageState extends State<LoginPage> {
                         : 'Voltar ao Login.',
                   ),
                 ),
+                if (isLogin)
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ForgotPasswordPage()),
+                      );
+                    },
+                    child: const Text('Esqueceu sua senha? Clique aqui'),
+                  ),
               ],
             ),
           ),
