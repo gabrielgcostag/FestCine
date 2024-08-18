@@ -1,6 +1,8 @@
 import 'package:festcine_pedraazul/auth/pages/login_page.dart';
+import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -43,11 +45,15 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: primaryColor,
         appBar: AppBar(
           title: const Text(
             "Alterar senha",
-            style: TextStyle(fontSize: 22),
+            style: TextStyle(color: tertiaryColor),
           ),
+          forceMaterialTransparency: true,
+          iconTheme: const IconThemeData(color: tertiaryColor),
         ),
         body: SingleChildScrollView(
             child: Padding(
@@ -57,6 +63,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        const SizedBox(
+                          height: 50,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 24.0),
@@ -69,13 +78,20 @@ class _ChangePasswordState extends State<ChangePassword> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: tertiaryColor)),
                               labelText: 'Senha Nova',
+                              labelStyle: TextStyle(color: tertiaryColor),
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         OutlinedButton(
                           style: OutlinedButton.styleFrom(
+                              side: const BorderSide(
+                                  color: Color.fromARGB(255, 230, 114, 152)),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 40),
                               shape: RoundedRectangleBorder(
@@ -93,7 +109,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             style: TextStyle(
                                 fontSize: 16,
                                 letterSpacing: 2.2,
-                                color: Colors.black),
+                                color: tertiaryColor),
                           ),
                         ),
                       ]),

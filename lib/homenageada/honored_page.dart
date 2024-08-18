@@ -64,7 +64,8 @@ class _HonoredPageState extends State<HonoredPage> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Iniciou sua carreira no teatro, em 1975, como integrante do grupo Asdrúbal Trouxe o Trombone, na peça "O Inspetor Geral", de Nicolai Gogol. Nos anos 1980, integrou o grupo teatral...'),
                                 ),
                               ],
                             ),
@@ -81,8 +82,7 @@ class _HonoredPageState extends State<HonoredPage> {
                                               8.0), // Define o raio dos cantos
                                         ),
                                       ),
-                                      side:
-                                          WidgetStateProperty.all<BorderSide>(
+                                      side: WidgetStateProperty.all<BorderSide>(
                                         const BorderSide(
                                             width: 2,
                                             color: Color.fromARGB(255, 207, 144,
@@ -140,7 +140,8 @@ class _HonoredPageState extends State<HonoredPage> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Maria de Lourdes da Silveira Mäder (Rio de Janeiro, 12 de setembro de 1966), mais conhecida como Malu Mader, é uma atriz brasileira. Tendo protagonizado diversas telenovelas, tornou-se uma das...'),
                                 ),
                               ],
                             ),
@@ -157,8 +158,7 @@ class _HonoredPageState extends State<HonoredPage> {
                                               8.0), // Define o raio dos cantos
                                         ),
                                       ),
-                                      side:
-                                          WidgetStateProperty.all<BorderSide>(
+                                      side: WidgetStateProperty.all<BorderSide>(
                                         const BorderSide(
                                             width: 2,
                                             color: Color.fromARGB(255, 207, 144,
@@ -216,7 +216,8 @@ class _HonoredPageState extends State<HonoredPage> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Interpretou um de seus personagens mais marcantes do cinema, em Lamarca. Também interpretou outro personagem histórico, o Visconde de Mauá, Irineu Evangelista de...'),
                                 ),
                               ],
                             ),
@@ -233,8 +234,7 @@ class _HonoredPageState extends State<HonoredPage> {
                                               8.0), // Define o raio dos cantos
                                         ),
                                       ),
-                                      side:
-                                          WidgetStateProperty.all<BorderSide>(
+                                      side: WidgetStateProperty.all<BorderSide>(
                                         const BorderSide(
                                             width: 2,
                                             color: Color.fromARGB(255, 207, 144,
@@ -293,7 +293,8 @@ class _HonoredPageState extends State<HonoredPage> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Marcos Vianna Caruso (São Paulo, 22 de fevereiro de 1952) é um ator, autor e diretor brasileiro. Autor e diretor de vários sucessos...'),
                                 ),
                               ],
                             ),
@@ -310,8 +311,7 @@ class _HonoredPageState extends State<HonoredPage> {
                                               8.0), // Define o raio dos cantos
                                         ),
                                       ),
-                                      side:
-                                          WidgetStateProperty.all<BorderSide>(
+                                      side: WidgetStateProperty.all<BorderSide>(
                                         const BorderSide(
                                             width: 2,
                                             color: Color.fromARGB(255, 207, 144,
@@ -369,7 +369,8 @@ class _HonoredPageState extends State<HonoredPage> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Filha de imigrantes sírios de origem judaica,[3] foi alfabetizada numa escola francesa e fez cursos de inglês, italiano e espanhol. Entre os anos de 1977 e 1979, morou na Europa...'),
                                 ),
                               ],
                             ),
@@ -386,8 +387,7 @@ class _HonoredPageState extends State<HonoredPage> {
                                               8.0), // Define o raio dos cantos
                                         ),
                                       ),
-                                      side:
-                                          WidgetStateProperty.all<BorderSide>(
+                                      side: WidgetStateProperty.all<BorderSide>(
                                         const BorderSide(
                                             width: 2,
                                             color: Color.fromARGB(255, 207, 144,
@@ -446,7 +446,8 @@ class _HonoredPageState extends State<HonoredPage> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Stênio Garcia Faro (Mimoso do Sul, 28 de abril de 1932) é um ator brasileiro. Conhecido por suas performances na tela e no palco, ele é ganhador de...'),
                                 ),
                               ],
                             ),
@@ -463,8 +464,7 @@ class _HonoredPageState extends State<HonoredPage> {
                                               8.0), // Define o raio dos cantos
                                         ),
                                       ),
-                                      side:
-                                          WidgetStateProperty.all<BorderSide>(
+                                      side: WidgetStateProperty.all<BorderSide>(
                                         const BorderSide(
                                             width: 2,
                                             color: Color.fromARGB(255, 207, 144,

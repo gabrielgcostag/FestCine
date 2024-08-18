@@ -3,14 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:flutter/material.dart';
 
-class SchedulePage extends StatefulWidget {
-  const SchedulePage({super.key});
+class MarcosCarusoRoomSchedule extends StatefulWidget {
+  const MarcosCarusoRoomSchedule({super.key});
 
   @override
-  State<SchedulePage> createState() => _SchedulePageState();
+  State<MarcosCarusoRoomSchedule> createState() =>
+      _MarcosCarusoRoomScheduleState();
 }
 
-class _SchedulePageState extends State<SchedulePage> {
+class _MarcosCarusoRoomScheduleState extends State<MarcosCarusoRoomSchedule> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   List<String>? imageUrls;
 
@@ -23,8 +24,8 @@ class _SchedulePageState extends State<SchedulePage> {
   Future<void> _fetchImageUrls() async {
     try {
       DocumentSnapshot doc = await firebaseFirestore
-          .collection('schedule')
-          .doc('programacao2024')
+          .collection('salas')
+          .doc('marcos_caruso')
           .get();
       if (doc.exists) {
         setState(() {
@@ -42,12 +43,20 @@ class _SchedulePageState extends State<SchedulePage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: primaryColor,
+      appBar: AppBar(
+        title: const Text(
+          "Sala Marcos Caruso",
+          style: TextStyle(color: tertiaryColor),
+        ),
+        forceMaterialTransparency: true,
+        iconTheme: const IconThemeData(color: tertiaryColor),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              const SizedBox(height: 24),
+              const SizedBox(height: 150),
               if (imageUrls == null)
                 const Center(
                   child: CircularProgressIndicator(),

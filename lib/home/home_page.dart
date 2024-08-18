@@ -375,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                                         color: secondaryColor, fontSize: 28),
                                   ),
                                   Text(
-                                    "$daysLeft",
+                                    daysLeft >= 0 ? "$daysLeft" : "0",
                                     style: const TextStyle(
                                         fontSize: 92,
                                         fontFamily: "Montserrat-bold",

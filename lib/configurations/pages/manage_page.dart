@@ -9,18 +9,30 @@ class ManagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Gerenciar conta")),
+        extendBodyBehindAppBar: true,
+        backgroundColor: primaryColor,
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          title: const Text(
+            "Gerenciar conta",
+            style: TextStyle(color: tertiaryColor),
+          ),
+          iconTheme: const IconThemeData(color: tertiaryColor),
+        ),
         body: Container(
           padding: const EdgeInsets.all(10),
           child: ListView(children: [
             const SizedBox(height: 40),
             const Row(
               children: [
-                Icon(Icons.person, color: primaryColor),
+                Icon(Icons.person, color: tertiaryColor),
                 SizedBox(width: 10),
                 Text(
                   "Gerenciamento da Conta",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: tertiaryColor),
                 )
               ],
             ),

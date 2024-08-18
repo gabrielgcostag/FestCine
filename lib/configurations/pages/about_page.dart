@@ -1,3 +1,4 @@
+import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
@@ -6,8 +7,15 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: primaryColor,
       appBar: AppBar(
-        title: const Text("Sobre o app"),
+        backgroundColor: primaryColor,
+        title: const Text(
+          "Sobre",
+          style: TextStyle(color: tertiaryColor),
+        ),
+        iconTheme: const IconThemeData(color: tertiaryColor),
       ),
       body: const SizedBox(
         width: double.infinity,
@@ -16,16 +24,17 @@ class AboutPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.all(30)),
+              SizedBox(height: 30),
               Text(
-                "Sobre",
-                style: TextStyle(fontSize: 30),
+                "Sobre o app",
+                style: TextStyle(fontSize: 30, color: tertiaryColor),
               ),
               Padding(padding: EdgeInsets.all(30)),
               Padding(
                 padding: EdgeInsets.all(30.0),
                 child: Text(
-                  "    O FestCine Pedra Azul App é o seu companheiro indispensável para desfrutar ao máximo do festival de cinema mais esperado do ano.  \n    Desenvolvido com tecnologia de ponta em Dart usando Flutter, nosso aplicativo oferece uma experiência fluida e intuitiva tanto para usuários de Android quanto iOS. Esteja você interessado em explorar a programação completa do festival, reservar ingressos, ou interagir com outros cinéfilos, o FestCine Pedra Azul App tem tudo o que você precisa, garantindo que você não perca nenhum momento emocionante do evento.",
-                  style: TextStyle(fontSize: 25),
+                  "       O app do Fest Cine Pedra Azul oferece informações práticas sobre a programação, inscrições, homenageados, prêmios, curadores, entre outros. Com uma interface simples e acessível, ele facilita o acompanhamento das principais novidades do festival. É ideal para quem deseja acompanhar tudo de maneira organizada e eficiente.",
+                  style: TextStyle(fontSize: 25, color: tertiaryColor),
                 ),
               )
             ],

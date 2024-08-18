@@ -102,8 +102,8 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 side: const BorderSide(color: primaryColor),
               ),
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const ManagePage()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ManagePage()));
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,8 +150,6 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 showLicensePage(
                     context: context,
                     applicationName: "FestCine Pedra Azul",
-                    applicationIcon: Image.asset(
-                        'assets/images/Logo_FestCine_Pedra_Azul-removebg-preview.png'),
                     applicationVersion: "1.0");
               },
               child: const Row(
@@ -177,8 +175,8 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 side: const BorderSide(color: primaryColor),
               ),
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const AboutPage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const AboutPage()));
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

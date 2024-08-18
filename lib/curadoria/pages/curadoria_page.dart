@@ -1,5 +1,6 @@
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CuradoriaPage extends StatefulWidget {
   const CuradoriaPage({super.key});
@@ -18,11 +19,11 @@ class _CuradoriaPageState extends State<CuradoriaPage> {
       extendBodyBehindAppBar: true,
       backgroundColor: primaryColor,
       appBar: AppBar(
+        backgroundColor: primaryColor,
         title: const Text(
           "Curadores",
           style: TextStyle(color: tertiaryColor),
         ),
-        forceMaterialTransparency: true,
         iconTheme: const IconThemeData(color: tertiaryColor),
       ),
       body: SingleChildScrollView(
@@ -47,26 +48,58 @@ class _CuradoriaPageState extends State<CuradoriaPage> {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         height: standardHeight,
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Cal Gomes",
                               style:
                                   TextStyle(fontSize: 24, color: primaryColor),
                             ),
-                            Spacer(),
-                            Row(
+                            const Spacer(),
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Jornalista e Publicitário, coordenou o Cine Clube Z, na faculdade de Comunicação FACHA, Rio de Janeiro. Dirigiu a agência de publicidade Eternity e o jornal Página Dois.Foi editor-chefe da revista Prisma e...'),
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                OutlinedButton(
+                                    style: ButtonStyle(
+                                      shape: WidgetStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              8.0), // Define o raio dos cantos
+                                        ),
+                                      ),
+                                      side: WidgetStateProperty.all<BorderSide>(
+                                        const BorderSide(
+                                            width: 2,
+                                            color: Color.fromARGB(255, 207, 144,
+                                                183)), // Define a cor da borda
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      var url = Uri.https(
+                                          'festcinepedraazul.com.br',
+                                          '/curadoria');
+                                      await launchUrl(url);
+                                    },
+                                    child: const Text(
+                                      "Saber Mais",
+                                      style: TextStyle(color: primaryColor),
+                                    ))
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -92,26 +125,58 @@ class _CuradoriaPageState extends State<CuradoriaPage> {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         height: standardHeight,
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "André Morais",
                               style:
                                   TextStyle(fontSize: 24, color: primaryColor),
                             ),
-                            Spacer(),
-                            Row(
+                            const Spacer(),
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'André Morais é ator, cineasta, roteirista e músico paraibano. Seu primeiro filme como realizador, o curta-metragem ALMA, participou de mais de 20 festivais no Brasil e no exterior. O filme...'),
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                OutlinedButton(
+                                    style: ButtonStyle(
+                                      shape: WidgetStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              8.0), // Define o raio dos cantos
+                                        ),
+                                      ),
+                                      side: WidgetStateProperty.all<BorderSide>(
+                                        const BorderSide(
+                                            width: 2,
+                                            color: Color.fromARGB(255, 207, 144,
+                                                183)), // Define a cor da borda
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      var url = Uri.https(
+                                          'festcinepedraazul.com.br',
+                                          '/curadoria');
+                                      await launchUrl(url);
+                                    },
+                                    child: const Text(
+                                      "Saber Mais",
+                                      style: TextStyle(color: primaryColor),
+                                    ))
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -138,26 +203,58 @@ class _CuradoriaPageState extends State<CuradoriaPage> {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         height: standardHeight,
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Sara Engelhardt",
                               style:
                                   TextStyle(fontSize: 24, color: primaryColor),
                             ),
-                            Spacer(),
-                            Row(
+                            const Spacer(),
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Sara Engelhardt é Filmmaker, diretora de cena e animação, roteirista, produtora de áudio e vídeo há mais de 19 anos. Estudou Marketing na Faculdade Estácio de Sá, Vitória ES. Dentre...'),
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                OutlinedButton(
+                                    style: ButtonStyle(
+                                      shape: WidgetStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              8.0), // Define o raio dos cantos
+                                        ),
+                                      ),
+                                      side: WidgetStateProperty.all<BorderSide>(
+                                        const BorderSide(
+                                            width: 2,
+                                            color: Color.fromARGB(255, 207, 144,
+                                                183)), // Define a cor da borda
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      var url = Uri.https(
+                                          'festcinepedraazul.com.br',
+                                          '/curadoria');
+                                      await launchUrl(url);
+                                    },
+                                    child: const Text(
+                                      "Saber Mais",
+                                      style: TextStyle(color: primaryColor),
+                                    ))
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -183,26 +280,58 @@ class _CuradoriaPageState extends State<CuradoriaPage> {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         height: standardHeight,
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Pedro Kalli",
                               style:
                                   TextStyle(fontSize: 24, color: primaryColor),
                             ),
-                            Spacer(),
-                            Row(
+                            const Spacer(),
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "Description Description Description Description Description DescriptionDescription Description DescriptionDescription"),
+                                      style: TextStyle(fontSize: 16),
+                                      'Filmmaker e criador de conteúdo. Graduado pela FAPCOM - Faculdade Paulus de Comunicação e Produção Audiovisual. Atuou como editor de vídeos na equipe de Branded Content da VIX Mídia...'),
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                OutlinedButton(
+                                    style: ButtonStyle(
+                                      shape: WidgetStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              8.0), // Define o raio dos cantos
+                                        ),
+                                      ),
+                                      side: WidgetStateProperty.all<BorderSide>(
+                                        const BorderSide(
+                                            width: 2,
+                                            color: Color.fromARGB(255, 207, 144,
+                                                183)), // Define a cor da borda
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      var url = Uri.https(
+                                          'festcinepedraazul.com.br',
+                                          '/curadoria');
+                                      await launchUrl(url);
+                                    },
+                                    child: const Text(
+                                      "Saber Mais",
+                                      style: TextStyle(color: primaryColor),
+                                    ))
+                              ],
+                            )
                           ],
                         ),
                       ),
