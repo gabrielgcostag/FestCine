@@ -33,7 +33,7 @@ class AboutPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(30.0),
                 child: Text(
-                  "       O app do Fest Cine Pedra Azul oferece informações práticas sobre a programação, inscrições, homenageados, prêmios, curadores, entre outros. Com uma interface simples e acessível, ele facilita o acompanhamento das principais novidades do festival. É ideal para quem deseja acompanhar tudo de maneira organizada e eficiente.",
+                  "    O app do Fest Cine Pedra Azul oferece informações práticas sobre a programação, inscrições, homenageados, prêmios, curadores, entre outros.  \n    Com uma interface simples e acessível, ele facilita o acompanhamento das principais novidades do festival.  \n    É ideal para quem deseja acompanhar tudo de maneira organizada e eficiente.",
                   style: TextStyle(fontSize: 25, color: tertiaryColor),
                 ),
               )

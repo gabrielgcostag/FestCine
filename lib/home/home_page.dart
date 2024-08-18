@@ -164,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         child: const Card(
-                          color: primaryColor,
+                          color: Color.fromARGB(255, 27, 43, 63),
                           child: SizedBox(
                             width: 120,
                             height: 120,
@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         child: const Card(
-                          color: primaryColor,
+                          color: Color.fromARGB(255, 27, 43, 63),
                           child: SizedBox(
                             width: 120,
                             height: 120,
@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                           await launchUrl(url);
                         },
                         child: const Card(
-                          color: primaryColor,
+                          color: Color.fromARGB(255, 27, 43, 63),
                           child: SizedBox(
                             width: 120,
                             height: 120,
@@ -258,7 +258,7 @@ class _HomePageState extends State<HomePage> {
                           await launchUrl(url);
                         },
                         child: const Card(
-                          color: primaryColor,
+                          color: Color.fromARGB(255, 27, 43, 63),
                           child: SizedBox(
                             width: 120,
                             height: 120,
@@ -288,7 +288,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         child: const Card(
-                          color: primaryColor,
+                          color: Color.fromARGB(255, 27, 43, 63),
                           child: SizedBox(
                             width: 120,
                             height: 120,
@@ -318,7 +318,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         child: const Card(
-                          color: primaryColor,
+                          color: Color.fromARGB(255, 27, 43, 63),
                           child: SizedBox(
                             width: 120,
                             height: 120,

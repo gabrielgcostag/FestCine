@@ -7,6 +7,7 @@ class DetailsPage extends StatelessWidget {
   final String photographer;
   final String details;
   final int? index;
+
   const DetailsPage({
     super.key,
     required this.imagePath,
@@ -15,6 +16,7 @@ class DetailsPage extends StatelessWidget {
     required this.details,
     required this.index,
   });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,12 +70,14 @@ class DetailsPage extends StatelessWidget {
                           fontSize: 22,
                           fontWeight: FontWeight.w600,
                         ),
+                        textAlign: TextAlign.left, // Alinha à esquerda
                       ),
                       Text(
                         'By $photographer',
                         style: const TextStyle(
                           fontSize: 10,
                         ),
+                        textAlign: TextAlign.left, // Alinha à esquerda
                       ),
                       const SizedBox(
                         height: 32,
@@ -82,6 +86,7 @@ class DetailsPage extends StatelessWidget {
                         details,
                         style: const TextStyle(
                             fontSize: 16, fontFamily: "Montserrat-Bold.ttf"),
+                        textAlign: TextAlign.left, // Alinha à esquerda
                       ),
                     ],
                   ),

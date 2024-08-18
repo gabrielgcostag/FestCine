@@ -181,57 +181,43 @@ class _NavigationPageState extends State<NavigationPage> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        GestureDetector(
+                        ListTile(
+                          leading: const Image(
+                            width: 25,
+                            image: AssetImage("assets/images/instagram.png"),
+                          ),
+                          title: const Text('@festcinepedraazul'),
                           onTap: () async {
                             var url =
                                 Uri.https('instagram.com', 'festcinepedraazul');
                             await launchUrl(url);
                           },
-                          child: const Card(
-                            child: SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: Image(
-                                image:
-                                    AssetImage("assets/images/insta-logo.png"),
-                              ),
-                            ),
-                          ),
                         ),
-                        GestureDetector(
+                        ListTile(
+                          leading: const Image(
+                            width: 25,
+                            image: AssetImage("assets/images/facebook.png"),
+                          ),
+                          title: const Text('festcinepedraazul'),
                           onTap: () async {
                             var url =
                                 Uri.https('facebook.com', 'festcinepedraazul');
                             await launchUrl(url);
                           },
-                          child: const Card(
-                            child: SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: Image(
-                                image: AssetImage(
-                                    "assets/images/facebook-logo.png"),
-                              ),
-                            ),
-                          ),
                         ),
-                        GestureDetector(
+                        ListTile(
+                          leading: const Image(
+                            width: 25,
+                            image: AssetImage("assets/images/twitter.png"),
+                          ),
+                          title: const Text('@fc_pedra_azul'),
                           onTap: () async {
                             var url = Uri.https('x.com', 'fc_pedra_azul');
                             await launchUrl(url);
                           },
-                          child: const Card(
-                            child: SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: Image(
-                                image: AssetImage("assets/images/x-logo.png"),
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     )
