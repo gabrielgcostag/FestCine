@@ -2,7 +2,6 @@ import 'package:festcine_pedraazul/auth/pages/login_page.dart';
 import 'package:festcine_pedraazul/core/helpers/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
